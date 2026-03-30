@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS111 Blog - Ishan Jha</title>
+<link href="CS111%20Blog%20-%20Ishan%20Jha_files/css2.css" rel="stylesheet">
+<link rel="stylesheet" href="CS111%20Blog%20-%20Ishan%20Jha_files/codemirror.min.css">
+<link rel="stylesheet" href="CS111%20Blog%20-%20Ishan%20Jha_files/darcula.min.css">
+<script src="CS111%20Blog%20-%20Ishan%20Jha_files/codemirror.min.js"></script>
+<script src="CS111%20Blog%20-%20Ishan%20Jha_files/python.min.js"></script>
+<script src="CS111%20Blog%20-%20Ishan%20Jha_files/clike.min.js"></script>
+<script src="CS111%20Blog%20-%20Ishan%20Jha_files/javascript.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  body {
+    background: #0d1117;
+    color: #e6edf3;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+ 
+  a { color: #58a6ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+ 
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+  }
+ 
+  .meta {
+    text-align: center;
+    color: #8b949e;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+ 
+  h1.title {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 700;
+    color: #f0f6fc;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+ 
+  .subtitle {
+    text-align: center;
+    color: #8b949e;
+    font-size: 15px;
+    max-width: 620px;
+    margin: 0 auto 48px;
+    line-height: 1.6;
+  }
+ 
+  hr { border: none; border-top: 1px solid #21262d; margin: 44px 0; }
+ 
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f0f6fc;
+    margin: 44px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #21262d;
+  }
+ 
+  h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #e6edf3;
+    margin: 28px 0 10px;
+  }
+ 
+  h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin: 22px 0 8px;
+  }
+ 
+  p { margin-bottom: 14px; color: #c9d1d9; font-size: 15px; }
+ 
+  ul { margin: 0 0 16px 20px; }
+  ul li { color: #c9d1d9; font-size: 15px; margin-bottom: 4px; }
+ 
+  .table-wrap { overflow-x: auto; margin-bottom: 24px; }
+ 
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+ 
+  th {
+    background: #161b22;
+    color: #8b949e;
+    font-weight: 600;
+    text-align: left;
+    padding: 9px 14px;
+    border: 1px solid #30363d;
+    font-size: 13px;
+  }
+ 
+  td {
+    padding: 9px 14px;
+    border: 1px solid #21262d;
+    color: #c9d1d9;
+    background: #0d1117;
+    vertical-align: top;
+    font-size: 14px;
+  }
+ 
+  tr:hover td { background: #161b22; }
+ 
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    background: #161b22;
+    color: #79c0ff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #30363d;
+  }
+ 
+  pre {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 18px 20px;
+    overflow-x: auto;
+    margin-bottom: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
+ 
+  pre code { background: none; border: none; padding: 0; color: #e6edf3; }
+ 
+  .kw   { color: #ff7b72; }
+  .fn   { color: #d2a8ff; }
+  .str  { color: #a5d6ff; }
+  .num  { color: #f2cc60; }
+  .cm   { color: #8b949e; font-style: italic; }
+  .cls  { color: #ffa657; }
+  .bool { color: #79c0ff; }
+ 
+  .annotation {
+    background: #0d1f38;
+    border-left: 3px solid #388bfd;
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    font-size: 13.5px;
+    color: #8b949e;
+    line-height: 1.6;
+  }
+  .annotation strong { color: #c9d1d9; }
+ 
+  .callout {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #c9d1d9;
+    line-height: 1.6;
+  }
+  .callout strong { color: #f0f6fc; }
+ 
+  .callout-blue  { border-color: #1f6feb; background: #0d1f38; }
+  .callout-green { border-color: #238636; background: #0d2b1a; }
+  .callout-orange{ border-color: #9e6a03; background: #2b1a0d; }
+ 
+  .badge {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 100px;
+    margin-right: 5px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .b-blue   { background: #0d1f38; color: #58a6ff; border: 1px solid #1f6feb; }
+  .b-green  { background: #0d2b1a; color: #3fb950; border: 1px solid #238636; }
+  .b-orange { background: #2b1a0d; color: #ffa657; border: 1px solid #9e6a03; }
+  .b-purple { background: #1a0d2b; color: #d2a8ff; border: 1px solid #6e40c9; }
+  .b-red    { background: #2b0d0d; color: #ff7b72; border: 1px solid #da3633; }
+ 
+  .tree {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 18px 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 2;
+    margin-bottom: 24px;
+  }
+  .tree-l0 { color: #ffa657; font-weight: 700; }
+  .tree-l1 { color: #79c0ff; margin-left: 22px; display: block; }
+  .tree-l2 { color: #3fb950; margin-left: 44px; display: block; }
+  .tree-note { color: #8b949e; font-size: 12px; }
+ 
+  .checklist { list-style: none; margin: 0 0 20px; padding: 0; }
+  .checklist li { font-size: 14px; color: #c9d1d9; padding: 3px 0; }
+  .checklist li::before { content: '✅ '; }
+ 
+  .toc {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 40px;
+    font-size: 14px;
+  }
+  .toc h4 { margin: 0 0 12px; }
+  .toc ol { margin-left: 18px; }
+  .toc li { margin-bottom: 4px; }
+  .toc a { color: #58a6ff; }
+ 
+ 
+  .hero-actions {
+    text-align: center;
+    margin: 24px 0 36px;
+  }
+
+  .play-button {
+    display: inline-block;
+    background: #1f6feb;
+    color: #ffffff;
+    border: 1px solid #388bfd;
+    border-radius: 10px;
+    padding: 12px 22px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(31, 111, 235, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+
+  .play-button:hover {
+    background: #388bfd;
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 28px rgba(56, 139, 253, 0.28);
+  }
+
+  .image-frame {
+    margin: 18px 0 22px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 14px;
+  }
+
+  .image-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+
+  .image-caption {
+    margin-top: 10px;
+    color: #8b949e;
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+
+  .footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid #21262d;
+    text-align: center;
+    font-size: 13px;
+    color: #8b949e;
+    line-height: 1.9;
+  }
+
+  /* Code Runner Styles */
+  .code-runner-container {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    margin: 24px 0;
+    overflow: hidden;
+  }
+
+  .challenge-box {
+    background: #0d1f38;
+    border-bottom: 1px solid #30363d;
+    padding: 14px 18px;
+  }
+
+  .challenge-box h3 {
+    color: #f0f6fc;
+    margin-bottom: 6px;
+    font-size: 16px;
+  }
+
+  .challenge-box p {
+    color: #c9d1d9;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .editor-container, .output-container {
+    background: #161b22;
+  }
+
+  .control-panel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #0d1117;
+    border-bottom: 1px solid #30363d;
+  }
+
+  .control-panel button {
+    background: #1f6feb;
+    color: #fff;
+    border: 1px solid #388bfd;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .control-panel button:hover {
+    background: #388bfd;
+  }
+
+  .control-panel select {
+    background: #161b22;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .editor-textarea {
+    width: 100%;
+    min-height: 220px;
+    border: none;
+    background: #161b22;
+    color: #e6edf3;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .output-content {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    margin: 12px;
+    padding: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #e6edf3;
+    min-height: 76px;
+    max-height: 280px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .lineCount, .charCount, .execTime {
+    color: #8b949e;
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+ 
+  <!-- HEADER -->
+  <div class="meta">Mar 23, 2026 • Ishan Jha • Sprint 6 Final Project</div>
+  <h1 class="title">CS111 Blog</h1>
+  <p class="subtitle">
+    A complete CS111 walkthrough of my final project — a 3-level laser 
+boss-fight game built with the GameEngine framework. Covers OOP 
+inheritance, data types, control structures, operators, I/O, debugging, 
+and API integration.
+  </p>
+
+  <div class="callout callout-orange">
+    <strong>Mini-lesson purpose:</strong> This blog is designed as a teaching walkthrough that explains how each CS111 concept appears in the games I've created.
+  </div>
+
+  <div class="hero-actions">
+    <a class="play-button" href="https://pkdev0101.github.io/Team_Portfolio/gamify/gpeppaPigv1-1" target="_blank" rel="noopener noreferrer">
+      ▶ Play the Game
+    </a>
+  </div>
+ 
+<div class="image-frame">
+  <img src="CS111%20Blog%20-%20Aadi%20Saini_files/peppa-gameplay.png" alt="Peppa Pig gameplay screenshot">
+  <div class="image-caption">
+    Final boss fight showing player movement, lasers, health system, and canvas rendering in action.
+  </div>
+</div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h4>📋 Table of Contents</h4>
+    <ol>
+      <li><a href="#overview">Game Overview</a></li>
+      <li><a href="#oop">OOP — Classes, Inheritance &amp; Constructor Chaining</a></li>
+      <li><a href="#methods">Methods &amp; Parameters</a></li>
+      <li><a href="#datatypes">Data Types</a></li>
+      <li><a href="#operators">Operators</a></li>
+      <li><a href="#control">Control Structures — Iteration, Conditions, Nested Conditions</a></li>
+      <li><a href="#io">Input / Output — Keyboard, Canvas, GameEnv</a></li>
+      <li><a href="#api">API Integration — Leaderboard &amp; Async I/O</a></li>
+      <li><a href="#comments">JSDoc Comments &amp; Code Documentation</a></li>
+      <li><a href="#debugging">Debugging — Console, Hitbox, Sources, Network, Application, Element</a></li>
+      <li><a href="#testing">Testing &amp; Verification</a></li>
+      <li><a href="#other-games">Other Game Examples &amp; Rubric Connections</a></li>
+    </ol>
+  </div>
+ 
+  <!-- SECTION 1: OVERVIEW -->
+  <h2 id="overview">🎮 Game Overview</h2>
+  <p>
+    Peppa Pig Fight Club is a 3-level boss-fight game where the player 
+(Ishan Jha) battles through the Peppa Pig cast using WASD movement and 
+SPACE to fire lasers. Every mechanic you experience as a player — the 
+boss chasing you, your laser hitting and dealing damage, the health bar 
+dropping, the level ending when the boss dies — is directly controlled 
+by the code explained in this blog.
+  </p>
+ 
+  <div class="table-wrap">
+    <table>
+      <tbody><tr><th>Level</th><th>Enemy</th><th>Enemy HP</th><th>Speed</th><th>Key New Concept</th></tr>
+      <tr><td>Level 1</td><td>George Pig</td><td>5</td><td>1.0</td><td>Inheritance, config objects, laser spawning</td></tr>
+      <tr><td>Level 2</td><td>Peppa Pig</td><td>5</td><td>1.2</td><td>Boolean state flags, data-driven design</td></tr>
+      <tr><td>Level 3 (Final Boss)</td><td>Daddy Pig</td><td>12</td><td>1.4</td><td>Nested conditions, invulnerability cooldown</td></tr>
+    </tbody></table>
+  </div>
+ 
+  <div class="callout callout-blue">
+    <strong>Controls:</strong> WASD to move · SPACE to fire lasers in your facing direction · defeat the boss to advance · player has 4 HP per level
+  </div>
+ 
+  <hr>
+ 
+  <!-- SECTION 2: OOP -->
+  <h2 id="oop">📐 OOP — Classes, Inheritance &amp; Constructor Chaining</h2>
+ 
+  <h3>Class Hierarchy (2+ levels deep)</h3>
+  <p>
+    The game is organized into two inheritance chains. The first 
+controls the boss enemy — what it looks like, how it moves, and how it 
+takes damage. The second controls each level — what objects appear, what
+ the background is, and what rules the battle follows. Without this 
+hierarchy, every level would need its own copy of all the laser, HUD, 
+and collision code.
+  </p>
+ 
+  <div class="tree">
+    <span class="tree-l0">GameObject</span><span class="tree-note">  ← engine base (provided)</span>
+    <span class="tree-l1">└── Enemy</span><span class="tree-note">  ← sprite, canvas, position (provided)</span>
+    <span class="tree-l2">└── PeppaBossEnemy</span><span class="tree-note">  ← MY CLASS: health, movement, damage</span>
+    <br>
+    <span class="tree-l0">PeppaBattleLevelBase</span><span class="tree-note">  ← MY BASE CLASS: laser system, HUD, collisions</span>
+    <span class="tree-l1">├── PeppaLevel1</span><span class="tree-note">  ← George Pig config</span>
+    <span class="tree-l1">├── PeppaLevel2</span><span class="tree-note">  ← Peppa Pig config</span>
+    <span class="tree-l1">└── PeppaLevel3</span><span class="tree-note">  ← Daddy Pig (final boss) config</span>
+  </div>
+ 
+  <h3>Writing Custom Classes</h3>
+  <p>
+    <code>PeppaBossEnemy</code> is the class that controls everything 
+about the boss character during a fight — how much health it has, 
+whether it's currently alive, how fast it chases the player, and whether
+ it can be hit right now. Without this class existing as a separate 
+object, there would be no boss to fight. The constructor runs once when 
+the level starts and sets up all the starting values that control boss 
+behavior for the entire fight.
+  </p>
+ 
+  <pre><code><span class="cm">/**
+ * PeppaBossEnemy — custom boss class extending the Enemy base.
+ * Adds health system, defeat state, invulnerability window, and hitbox debug.
+ * @class PeppaBossEnemy
+ * @extends Enemy
+ */</span>
+<span class="kw">class</span> <span class="cls">PeppaBossEnemy</span> <span class="kw">extends</span> <span class="cls">Enemy</span> {
+ 
+  <span class="cm">/**
+   * @param {Object} data     - Sprite and config data for this enemy
+   * @param {Object} gameEnv  - Shared game environment (canvas, objects, path)
+   */</span>
+  <span class="fn">constructor</span>(data = <span class="kw">null</span>, gameEnv = <span class="kw">null</span>) {
+    <span class="kw">super</span>(data, gameEnv);        <span class="cm">// constructor chaining → Enemy → GameObject</span>
+ 
+    <span class="kw">this</span>.health         = data?.health    ?? <span class="num">3</span>;   <span class="cm">// Number</span>
+    <span class="kw">this</span>.maxHealth      = <span class="kw">this</span>.health;
+    <span class="kw">this</span>.moveSpeed      = data?.moveSpeed ?? <span class="num">0.8</span>; <span class="cm">// Number</span>
+    <span class="kw">this</span>.isDefeated     = <span class="bool">false</span>;                  <span class="cm">// Boolean</span>
+    <span class="kw">this</span>.isVulnerable   = <span class="bool">true</span>;                   <span class="cm">// Boolean</span>
+    <span class="kw">this</span>.showHitbox     = <span class="bool">false</span>;                  <span class="cm">// Boolean</span>
+    <span class="kw">this</span>.lastDamagedAt  = <span class="num">0</span>;                      <span class="cm">// Number (timestamp)</span>
+    <span class="kw">this</span>.invulnerabilityMs = <span class="num">300</span>;               <span class="cm">// Number (cooldown window)</span>
+ 
+    console.<span class="fn">log</span>(<span class="str">`[PeppaBossEnemy] Spawned: ${data?.id} with ${<span class="kw">this</span>.health} HP`</span>);
+  }
+}</code></pre>
+  <div class="annotation">
+    <strong>super(data, gameEnv)</strong> is what makes the boss actually appear on screen. Calling it runs the <code>Enemy</code> constructor, which sets up the canvas element and loads the boss sprite image from the <code>src</code> path. Without that <code>super()</code>
+ call, the boss would have no image, no canvas to draw on, and no 
+position in the game world — it simply wouldn't exist visually. 
+Everything my custom code adds (health, speed, defeat state) layers on 
+top of what <code>super()</code> builds.
+  </div>
+
+  <!-- Code Runner: OOP class exercise -->
+  <div class="code-runner-container" id="runner-oop" data-storage-key="cs111-blog-runner-oop">
+    <div class="challenge-box">
+      <h3>Code Runner Challenge</h3>
+      <p>Create a class with constructor and method, then run it. This 
+is a small practice for OOP and constructor chaining in your game 
+classes.</p>
+    </div>
+    <div class="editor-container">
+      <div class="control-panel">
+        <button class="runBtn">▶</button>
+        <button class="copyBtn">⎘</button>
+        <button class="saveBtn">💾</button>
+        <button class="clearStorageBtn">🗑</button>
+        <select class="languageSelect"><option value="javascript" selected="selected">JavaScript</option><option value="python">Python</option><option value="java">Java</option></select>
+        <select class="fontSizeSelect"><option value="14" selected="selected">14px</option><option value="16">16px</option><option value="18">18px</option><option value="20">20px</option></select>
+      </div>
+      <textarea class="editor-textarea" style="display: none;">class SimpleBoss {
+  constructor(name, hp = 8) {
+    this.name = name;
+    this.hp = hp;
+    this.isDefeated = false;
+  }
+
+  takeDamage(dmg) {
+    this.hp -= dmg;
+    if (this.hp &lt;= 0) {
+      this.isDefeated = true;
+      return `${this.name} is defeated!`;
+    }
+    return `${this.name} has ${this.hp} HP remaining.`;
+  }
+}
+
+const b = new SimpleBoss('TestBoss', 10);
+console.log(b.takeDamage(4));
+console.log(b.takeDamage(7));</textarea><div class="CodeMirror cm-s-darcula" translate="no"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4px; left: 34px;"><textarea style="position: absolute; bottom: -1em; padding: 0px; width: 1px; height: 1em; min-height: 1em; outline: none;" wrap="off" autocorrect="off" autocapitalize="none" spellcheck="false" tabindex="0"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="display: block; bottom: 0px; width: 18px; visibility: hidden;"><div style="min-width: 1px; height: 552px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true" style="height: 18px; visibility: hidden;"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1" draggable="true"><div class="CodeMirror-sizer" style="margin-left: 30px; margin-bottom: 0px; border-right-width: 50px; min-height: 552px; min-width: 491px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div style="position: relative; outline: none;" role="presentation"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 27.2px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">class</span> <span class="cm-def">SimpleBoss</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  <span class="cm-property">constructor</span>(<span class="cm-def">name</span>, <span class="cm-def">hp</span> <span class="cm-operator">=</span> <span class="cm-number">8</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">this</span>.<span class="cm-property">name</span> <span class="cm-operator">=</span> <span class="cm-variable-2">name</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">this</span>.<span class="cm-property">hp</span> <span class="cm-operator">=</span> <span class="cm-variable-2">hp</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">this</span>.<span class="cm-property">isDefeated</span> <span class="cm-operator">=</span> <span class="cm-atom">false</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  <span class="cm-property">takeDamage</span>(<span class="cm-def">dmg</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">this</span>.<span class="cm-property">hp</span> <span class="cm-operator">-=</span> <span class="cm-variable-2">dmg</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">if</span> (<span class="cm-keyword">this</span>.<span class="cm-property">hp</span> <span class="cm-operator">&lt;=</span> <span class="cm-number">0</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">      <span class="cm-keyword">this</span>.<span class="cm-property">isDefeated</span> <span class="cm-operator">=</span> <span class="cm-atom">true</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">      <span class="cm-keyword">return</span> <span class="cm-string-2">`${</span><span class="cm-keyword">this</span>.<span class="cm-property">name</span><span class="cm-string-2">}</span> <span class="cm-string-2">is defeated!`</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">return</span> <span class="cm-string-2">`${</span><span class="cm-keyword">this</span>.<span class="cm-property">name</span><span class="cm-string-2">}</span> <span class="cm-string-2">has ${</span><span class="cm-keyword">this</span>.<span class="cm-property">hp</span><span class="cm-string-2">}</span> <span class="cm-string-2">HP remaining.`</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">15</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">16</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">}</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">17</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">18</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">const</span> <span class="cm-def">b</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">SimpleBoss</span>(<span class="cm-string">'TestBoss'</span>, <span class="cm-number">10</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">19</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">b</span>.<span class="cm-property">takeDamage</span>(<span class="cm-number">4</span>));</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">20</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">b</span>.<span class="cm-property">takeDamage</span>(<span class="cm-number">7</span>));</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 50px; width: 1px; border-bottom: 0px solid transparent; top: 552px;"></div><div class="CodeMirror-gutters" style="height: 602px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div>
+      <div class="control-panel"><span class="lineCount">Lines: 20</span><span class="charCount">Characters: 429</span></div>
+    </div>
+    <div class="output-container">
+      <div class="control-panel"><span>Output</span><button class="copyOutputBtn">⎘</button><span class="execTime"></span></div>
+      <div class="output-content">Click "Run" in code control panel to see output ...</div>
+    </div>
+  </div>
+
+  <h3>Method Overriding</h3>
+  <p>
+    The engine calls <code>update()</code> on every game object 60 times per second. By overriding it in <code>PeppaBossEnemy</code>,
+ I control exactly what the boss does each frame — whether it chases the
+ player, whether it draws its hitbox, and whether it stops doing 
+anything after being defeated. Without this override, the boss would use
+ the default <code>Enemy</code> behavior, which doesn't know about health or defeat state. I also override <code>handleCollisionEvent()</code> to intentionally do nothing — collision damage is handled by the level, not the boss itself.
+  </p>
+ 
+  <pre><code><span class="cm">// OVERRIDES Enemy.update() — custom chase + hitbox draw behavior</span>
+<span class="fn">update</span>() {
+  <span class="kw">this</span>.<span class="fn">draw</span>();                       <span class="cm">// inherited from GameObject</span>
+ 
+  <span class="kw">if</span> (<span class="kw">this</span>.isDefeated) <span class="kw">return</span>;        <span class="cm">// early exit if dead</span>
+ 
+  <span class="kw">const</span> player = <span class="kw">this</span>.<span class="fn">findPlayer</span>();
+  <span class="kw">if</span> (!player) <span class="kw">return</span>;
+ 
+  <span class="kw">const</span> moved = <span class="kw">this</span>.<span class="fn">moveTowardPlayer</span>(player);
+  <span class="kw">if</span> (moved) <span class="kw">this</span>.<span class="fn">stayWithinCanvas</span>();   <span class="cm">// inherited method</span>
+ 
+  <span class="kw">if</span> (<span class="kw">this</span>.showHitbox) <span class="kw">this</span>.<span class="fn">drawHitbox</span>();
+}
+ 
+<span class="cm">// OVERRIDES Enemy.handleCollisionEvent() — delegated to level logic</span>
+<span class="fn">handleCollisionEvent</span>() {
+  <span class="cm">// Collision managed by PeppaBattleLevelBase, not the enemy itself</span>
+}</code></pre>
+  <div class="annotation">
+    Because <code>update()</code> runs every single frame, the override 
+is what makes the boss feel alive. Each frame it re-draws the sprite, 
+checks if it's dead (and stops moving if so), finds where the player is,
+ and takes one step toward them. Remove this override and the boss 
+freezes in place. The <code>handleCollisionEvent()</code> override is intentionally empty — if the engine's default collision fired, it could interfere with my own damage system in <code>PeppaBattleLevelBase</code>, so I block it here.
+  </div>
+ 
+  <h3>Instantiation — GameLevel Configuration with Object Literals</h3>
+  <p>
+    The <code>this.classes</code> array is what tells the engine which 
+objects to actually create and put into the game world when a level 
+starts. The engine reads this array, creates a new instance of each 
+class using the paired data object, and adds it to the game loop. If <code>PeppaBossEnemy</code> isn't in this array, there's no boss — the player would be fighting an empty room.
+  </p>
+ 
+  <pre><code><span class="cm">// Inside PeppaBattleLevelBase constructor — instantiates all game objects</span>
+<span class="kw">this</span>.classes = [
+  { <span class="kw">class</span>: <span class="cls">GamEnvBackground</span>, data: image_data_background },  <span class="cm">// Object literal</span>
+  { <span class="kw">class</span>: <span class="cls">Player</span>,           data: sprite_data_ishan    },  <span class="cm">// Object literal</span>
+  { <span class="kw">class</span>: <span class="cls">PeppaBossEnemy</span>,   data: sprite_data_enemy    }   <span class="cm">// Object literal</span>
+];
+ 
+<span class="cm">// sprite_data_enemy is a JSON config object — all required properties</span>
+<span class="kw">const</span> sprite_data_enemy = {
+  id:             config.enemyName,
+  greeting:       config.enemyGreeting,       <span class="cm">// String</span>
+  src:            <span class="str">`${path}/images/gamify/${config.enemyImage}`</span>,
+  SCALE_FACTOR:   config.enemyScale ?? <span class="num">4</span>,    <span class="cm">// Number</span>
+  ANIMATION_RATE: <span class="num">18</span>,                         <span class="cm">// Number</span>
+  INIT_POSITION:  { x: width * <span class="num">0.72</span>, y: height * <span class="num">0.66</span> },  <span class="cm">// Object</span>
+  health:         config.enemyHealth,          <span class="cm">// Number</span>
+  moveSpeed:      config.enemySpeed,           <span class="cm">// Number</span>
+  hitbox:         { widthPercentage: <span class="num">0.45</span>, heightPercentage: <span class="num">0.6</span> }
+};</code></pre>
+  <div class="annotation">
+    The <code>sprite_data_enemy</code> object directly controls what the boss looks like and where it starts. <code>INIT_POSITION</code>
+ is where the boss spawns on screen when the level loads — I placed it 
+at 72% across the canvas so it starts far from the player at 12%. <code>health</code> and <code>moveSpeed</code> are read by <code>PeppaBossEnemy</code>'s
+ constructor, so changing these numbers in the config is all it takes to
+ make Daddy Pig harder than George Pig without touching any other code.
+  </div>
+ 
+  <h4>📚 Related Homework: Classes and Methods</h4>
+  <p><strong><a href="https://aadis12.github.io/student/ClassesandMethodsHomework/">Classes and Methods Homework</a></strong>
+ - Demonstrates object-oriented programming fundamentals, including 
+class design, method implementation, and inheritance — the foundation of
+ the game's class hierarchy (PeppaBossEnemy, PeppaBattleLevelBase, 
+etc.).</p>
+ 
+  <hr>
+ 
+  <!-- SECTION 3: METHODS -->
+  <h2 id="methods">⚙️ Methods &amp; Parameters (5+ with return values)</h2>
+
+  <p>
+    The five methods in this project that clearly use return values are <code>moveTowardPlayer()</code>, <code>takeDamage()</code>, <code>toggleHitbox()</code>, <code>postScore()</code>, and <code>getLeaderboard()</code>. These return values are used to control movement, battle state, debug state, and API response handling.
+  </p>
+ 
+  <h3>1. moveTowardPlayer(target) — controls boss movement every frame</h3>
+  <pre><code><span class="cm">/**
+ * Moves boss toward a target object each frame using normalized direction vector.
+ * @param {Object} target - game object with .position, .width, .height
+ * @returns {boolean} true if movement occurred, false if already at target
+ */</span>
+<span class="fn">moveTowardPlayer</span>(target) {
+  <span class="kw">const</span> myCenterX = <span class="kw">this</span>.position.x + <span class="kw">this</span>.width  / <span class="num">2</span>;
+  <span class="kw">const</span> myCenterY = <span class="kw">this</span>.position.y + <span class="kw">this</span>.height / <span class="num">2</span>;
+  <span class="kw">const</span> dx = (target.position.x + target.width  / <span class="num">2</span>) - myCenterX;
+  <span class="kw">const</span> dy = (target.position.y + target.height / <span class="num">2</span>) - myCenterY;
+  <span class="kw">const</span> distance = Math.<span class="fn">hypot</span>(dx, dy);   <span class="cm">// √(dx² + dy²)</span>
+ 
+  <span class="kw">if</span> (distance &gt; <span class="num">1</span>) {
+    <span class="kw">this</span>.position.x += (dx / distance) * <span class="kw">this</span>.moveSpeed;  <span class="cm">// normalize + scale</span>
+    <span class="kw">this</span>.position.y += (dy / distance) * <span class="kw">this</span>.moveSpeed;
+    <span class="kw">return</span> <span class="bool">true</span>;
+  }
+  <span class="kw">return</span> <span class="bool">false</span>;
+}</code></pre>
+  <div class="annotation">
+    This method is called every frame inside <code>update()</code> and 
+is what makes the boss visibly chase the player across the screen. It 
+calculates the straight-line direction from the boss to the player, then
+ moves the boss exactly <code>moveSpeed</code> pixels in that direction.
+ Because it normalizes the direction vector first, the boss always moves
+ at the same speed — it doesn't slow down when far away or speed up when
+ close. The returned boolean tells <code>update()</code> whether to bother calling <code>stayWithinCanvas()</code> — no point clamping position if the boss didn't move.
+  </div>
+ 
+  <h3>2. takeDamage(amount) — controls whether a laser hit actually hurts the boss</h3>
+  <pre><code><span class="cm">/**
+ * Applies damage to boss. Respects invulnerability window and defeat state.
+ * @param {number} amount - HP to subtract (default 1)
+ * @returns {boolean} true if this hit caused defeat
+ */</span>
+<span class="fn">takeDamage</span>(amount = <span class="num">1</span>) {
+  <span class="kw">if</span> (<span class="kw">this</span>.isDefeated) {                          <span class="cm">// nested condition 1</span>
+    console.<span class="fn">log</span>(<span class="str">`[Boss] Already defeated.`</span>);
+    <span class="kw">return</span> <span class="bool">true</span>;
+  }
+  <span class="kw">if</span> (!<span class="kw">this</span>.isVulnerable) {                       <span class="cm">// nested condition 2</span>
+    console.<span class="fn">log</span>(<span class="str">`[Boss] Invulnerable, ignoring.`</span>);
+    <span class="kw">return</span> <span class="bool">false</span>;
+  }
+  <span class="kw">this</span>.health        = Math.<span class="fn">max</span>(<span class="num">0</span>, <span class="kw">this</span>.health - amount);
+  <span class="kw">this</span>.isVulnerable  = <span class="bool">false</span>;
+  <span class="kw">this</span>.lastDamagedAt = Date.<span class="fn">now</span>();
+  console.<span class="fn">log</span>(<span class="str">`[Boss] Hit! HP: ${<span class="kw">this</span>.health}/${<span class="kw">this</span>.maxHealth}`</span>);
+ 
+  <span class="kw">if</span> (<span class="kw">this</span>.health === <span class="num">0</span>) {                        <span class="cm">// nested condition 3</span>
+    <span class="kw">this</span>.isDefeated = <span class="bool">true</span>;
+    <span class="kw">this</span>.canvas.style.filter  = <span class="str">'grayscale(1) brightness(0.8)'</span>;
+    <span class="kw">this</span>.canvas.style.opacity = <span class="str">'0.6'</span>;
+    console.<span class="fn">log</span>(<span class="str">`[Boss] Defeated!`</span>);
+  }
+  <span class="kw">return</span> <span class="kw">this</span>.isDefeated;
+}</code></pre>
+  <div class="annotation">
+    This method is what the laser system calls when a laser hits the 
+boss hitbox. The three nested conditions are what make the fight feel 
+fair and intentional. The first condition stops a defeated boss from 
+taking damage a second time after it's already fading out. The second 
+condition enforces the 300ms invulnerability window — without it, a 
+single laser traveling through the boss would call <code>takeDamage</code>
+ on every frame it overlapped, killing Daddy Pig's 12 HP in under a 
+second. The third condition is what actually ends the level — when <code>isDefeated</code> becomes <code>true</code>, the boss visually grays out and <code>update()</code> in the level sees that flag and triggers the win screen or level transition.
+  </div>
+ 
+  <h3>3. spawnLaser(fromX, fromY, targetX, targetY, isPlayerLaser) — creates a new projectile</h3>
+  <pre><code><span class="cm">/**
+ * Spawns a laser aimed from one point toward a target point.
+ * @param {number}  fromX         - origin X coordinate
+ * @param {number}  fromY         - origin Y coordinate
+ * @param {number}  targetX       - aim target X coordinate
+ * @param {number}  targetY       - aim target Y coordinate
+ * @param {boolean} isPlayerLaser - true = player fired it, false = enemy fired it
+ */</span>
+<span class="fn">spawnLaser</span>(fromX, fromY, targetX, targetY, isPlayerLaser) {
+  <span class="kw">const</span> dx  = targetX - fromX;
+  <span class="kw">const</span> dy  = targetY - fromY;
+  <span class="kw">const</span> len = Math.<span class="fn">hypot</span>(dx, dy) || <span class="num">1</span>;     <span class="cm">// || prevents divide-by-zero</span>
+ 
+  <span class="kw">this</span>.lasers.<span class="fn">push</span>({                          <span class="cm">// push object into Array</span>
+    x: fromX, y: fromY,
+    vx: (dx / len) * <span class="kw">this</span>.laserSpeed,         <span class="cm">// Number — velocity x</span>
+    vy: (dy / len) * <span class="kw">this</span>.laserSpeed,         <span class="cm">// Number — velocity y</span>
+    isPlayerLaser,                              <span class="cm">// Boolean — ownership flag</span>
+    life: <span class="num">60</span>, maxLife: <span class="num">60</span>                     <span class="cm">// Number — lifespan in frames</span>
+  });
+}</code></pre>
+ 
+  <div class="annotation">
+    Every time the player hits SPACE or the boss fires on its interval, this method is called and adds a new object to the <code>this.lasers</code> array. That array is then looped through every frame by <code>updateLasers()</code> — each laser moves across the screen because its <code>vx</code> and <code>vy</code> values get added to its position each frame. The <code>isPlayerLaser</code>
+ boolean is critical: the collision check reads this flag to know 
+whether to damage the boss (player laser) or the player (enemy laser). A
+ laser without this flag would hit everything including its own shooter.
+  </div>
+ 
+  <h3>4. drawHitbox() — visually shows the boss collision boundary for debugging</h3>
+  <pre><code><span class="cm">/**
+ * Draws a red rectangle over the boss sprite for collision debugging.
+ * Only active when this.showHitbox === true.
+ */</span>
+<span class="fn">drawHitbox</span>() {
+  <span class="kw">const</span> ctx = <span class="kw">this</span>.gameEnv?.ctx;
+  <span class="kw">if</span> (!ctx) <span class="kw">return</span>;
+  ctx.<span class="fn">save</span>();
+  ctx.strokeStyle = <span class="str">'rgba(255, 0, 0, 0.85)'</span>;  <span class="cm">// String — CSS color</span>
+  ctx.lineWidth   = <span class="num">2</span>;                          <span class="cm">// Number</span>
+  ctx.<span class="fn">strokeRect</span>(<span class="kw">this</span>.position.x, <span class="kw">this</span>.position.y, <span class="kw">this</span>.width, <span class="kw">this</span>.height);
+  ctx.fillStyle   = <span class="str">'rgba(255,0,0,0.08)'</span>;
+  ctx.<span class="fn">fillRect</span>  (<span class="kw">this</span>.position.x, <span class="kw">this</span>.position.y, <span class="kw">this</span>.width, <span class="kw">this</span>.height);
+  ctx.<span class="fn">restore</span>();
+  console.<span class="fn">log</span>(<span class="str">`[Hitbox] pos=(${Math.round(<span class="kw">this</span>.position.x)},${Math.round(<span class="kw">this</span>.position.y)}) size=${<span class="kw">this</span>.width}x${<span class="kw">this</span>.height}`</span>);
+}</code></pre>
+ 
+  <div class="annotation">
+    During testing I noticed lasers were registering hits when they 
+visually looked like they missed the boss. I added this method to 
+overlay the actual collision rectangle on top of the sprite so I could 
+see the mismatch — the hitbox was too large relative to the pig's body 
+in the image. I adjusted <code>widthPercentage: 0.45</code> and <code>heightPercentage: 0.6</code> in the sprite config until the red rectangle matched the visible body, making combat feel accurate to what the player sees.
+  </div>
+ 
+  <h3>5. toggleHitbox() — turns hitbox display on or off during a live game session</h3>
+  <pre><code><span class="cm">/**
+ * Toggles hitbox debug display on/off.
+ * @returns {boolean} the new state of showHitbox
+ */</span>
+<span class="fn">toggleHitbox</span>() {
+  <span class="kw">this</span>.showHitbox = !<span class="kw">this</span>.showHitbox;                         <span class="cm">// Boolean NOT operator</span>
+  console.<span class="fn">log</span>(<span class="str">`[Hitbox] now ${<span class="kw">this</span>.showHitbox ? <span class="str">'ON'</span> : <span class="str">'OFF'</span>}`</span>);  <span class="cm">// String template literal</span>
+  <span class="kw">return</span> <span class="kw">this</span>.showHitbox;
+}</code></pre>
+  <div class="annotation">
+    The <code>!</code> operator flips <code>showHitbox</code> between <code>true</code> and <code>false</code> each time this is called. Inside <code>update()</code>, that boolean is checked every frame — when it's <code>true</code>, <code>drawHitbox()</code> fires and the red overlay appears on screen. When it's <code>false</code>,
+ nothing extra is drawn. This lets me toggle the debug view in a live 
+running game without restarting, which was essential for tuning hitbox 
+sizes during playtesting.
+  </div>
+ 
+  <h4>📚 Related Homework: Classes and Methods</h4>
+  <p><strong><a href="https://aadis12.github.io/student/ClassesandMethodsHomework/">Classes and Methods Homework</a></strong>
+ - Demonstrates object-oriented programming fundamentals, including 
+class design, method implementation, and inheritance — the foundation of
+ the game's class hierarchy (PeppaBossEnemy, PeppaBattleLevelBase, 
+etc.).</p>
+ 
+  <hr>
+ 
+  <!-- SECTION 4: DATA TYPES -->
+  <h2 id="datatypes">🗂️ Data Types</h2>
+  <p>
+    Every piece of game state is stored as one of five data types. The 
+type isn't just a label — it determines what operations are valid and 
+how the game logic behaves with that value. Using the wrong type would 
+break the comparisons and calculations that make the game work.
+  </p>
+ 
+  <div class="table-wrap">
+    <table>
+      <tbody><tr><th>Type</th><th>How It Controls the Game</th><th>Code Example</th></tr>
+      <tr>
+        <td><span class="badge b-orange">Number</span></td>
+        <td><code>health</code> tracks how many more hits the boss can take before the level ends. <code>moveSpeed</code>
+ is how many pixels the boss moves toward the player each frame — 1.4 
+for Daddy Pig vs 1.0 for George Pig is what makes him feel faster and 
+harder. <code>Date.now()</code> timestamps control every cooldown timer in the game.</td>
+        <td><code>this.health = 5</code> · <code>this.moveSpeed = 1.4</code> · <code>Date.now()</code> · <code>life: 60</code></td>
+      </tr>
+      <tr>
+        <td><span class="badge b-blue">String</span></td>
+        <td><code>enemyImage</code> is the file path the engine uses to load the boss sprite — get this string wrong and the boss appears as a broken image. <code>'grayscale(1)'</code> applied to <code>canvas.style.filter</code> is what visually grays the boss out when defeated. Template literals build the HUD messages shown on screen.</td>
+        <td><code>enemyName: 'Daddy Pig'</code> · <code>'grayscale(1)'</code> · template literals</td>
+      </tr>
+      <tr>
+        <td><span class="badge b-red">Boolean</span></td>
+        <td>Every major game state is a boolean flag. <code>isDefeated</code> stops the boss from moving and accepting damage, and triggers the win condition check. <code>battleEnded</code> stops the entire <code>update()</code> loop from running so nothing changes after the fight is over. <code>isPlayerLaser</code> decides whether a projectile damages the boss or the player.</td>
+        <td><code>isDefeated</code> · <code>isVulnerable</code> · <code>battleEnded</code> · <code>showHitbox</code> · <code>isPlayerLaser</code></td>
+      </tr>
+      <tr>
+        <td><span class="badge b-green">Array</span></td>
+        <td><code>this.lasers</code> holds every active projectile 
+currently flying across the screen. Each frame the entire array is 
+looped through — every laser moves, ages, and gets removed when it 
+expires or hits something. Without this array there would be no way to 
+track multiple simultaneous projectiles. <code>gameLevelClasses</code> is the ordered list the engine uses to know which level to load next.</td>
+        <td><code>this.lasers = []</code> · <code>this.classes = [...]</code> · <code>gameLevelClasses</code></td>
+      </tr>
+      <tr>
+        <td><span class="badge b-purple">Object (JSON)</span></td>
+        <td>Each laser in <code>this.lasers</code> is an object storing 
+its position, velocity, owner flag, and lifespan — all the data needed 
+to update and render it each frame. The level config object passed to <code>super()</code> is what makes each level different from the others without needing separate logic code.</td>
+        <td><code>{ enemyHealth: 12, enemySpeed: 1.4 }</code> · <code>INIT_POSITION: { x, y }</code></td>
+      </tr>
+    </tbody></table>
+  </div>
+ 
+  <h4>📚 Related Homework: Arrays</h4>
+  <p><strong><a href="https://aadis12.github.io/student/ArrayHomework/">Arrays Homework</a></strong>
+ - Shows understanding of array manipulation, indexing, and iteration, 
+which is used throughout the game for managing collections of objects 
+like laser arrays, level configurations, and leaderboard data.</p>
+ 
+  <h4>📚 Related Homework: Booleans</h4>
+  <p><strong><a href="https://aadis12.github.io/student/BooleansHomework/">Booleans Homework</a></strong>
+ - Demonstrates boolean logic and state management, critical for game 
+flags like isDefeated, isVulnerable, and battleEnded that control game 
+flow and behavior.</p>
+ 
+  <h4>📚 Related Homework: Data Abstraction</h4>
+  <p><strong><a href="https://aadis12.github.io/student/DataAbstractionHomework/">Data Abstraction Homework</a></strong>
+ - Shows ability to design abstract data types and encapsulate data, 
+similar to how the game uses config objects and class properties to 
+manage complex state.</p>
+ 
+  <h4>📚 Related Homework: Strings</h4>
+  <p><strong><a href="https://aadis12.github.io/student/StringsHomework/">Strings Homework</a></strong>
+ - Demonstrates string manipulation and processing, which appears in the
+ game through player names, console logging, and string template 
+literals for dynamic messages.</p>
+ 
+  <hr>
+ 
+  <!-- SECTION 5: OPERATORS -->
+  <h2 id="operators">🔢 Operators</h2>
+  <p>
+    Operators are the actual computations that run every frame to 
+produce the game's behavior. The boss physically moves because of <code>+= (dx/distance) * moveSpeed</code>. The laser system works because of vector math. The fight logic branches because of boolean comparisons.
+  </p>
+ 
+  <div class="table-wrap">
+    <table>
+      <tbody><tr><th>Operator Type</th><th>Operators</th><th>How It Controls the Game</th></tr>
+      <tr>
+        <td>Mathematical</td>
+        <td><code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>Math.hypot()</code> <code>Math.max()</code></td>
+        <td><code>position.x += vx</code> moves every laser across the screen each frame. <code>Math.hypot(dx,dy)</code> calculates the straight-line distance from boss to player so the chase direction can be normalized. <code>Math.max(0, health - amount)</code> prevents health from going below zero and causing weird behavior.</td>
+      </tr>
+      <tr>
+        <td>Boolean / Logical</td>
+        <td><code>&amp;&amp;</code> <code>||</code> <code>!</code> <code>===</code> <code>&lt;=</code> <code>&gt;=</code> <code>&gt;</code></td>
+        <td>The AABB collision check uses four <code>&amp;&amp;</code> conditions — all must be true for a hit. <code>!</code> inverts boolean flags like <code>!boss.isDefeated</code> to gate actions that should only happen while the boss is alive. <code>&gt;=</code> compares timestamps to enforce attack and damage cooldowns.</td>
+      </tr>
+      <tr>
+        <td>String Operations</td>
+        <td>Template literals <code>`${}`</code>, string concatenation</td>
+        <td>Template literals build the image path <code>`${path}/images/gamify/${config.enemyImage}`</code>
+ — this is what tells the engine which sprite file to load for each 
+boss. They also build every HUD message and console log that shows game 
+state.</td>
+      </tr>
+      <tr>
+        <td>Nullish / Optional</td>
+        <td><code>??</code> <code>?.</code></td>
+        <td><code>data?.health ?? 3</code> safely handles a level that forgets to set enemy health — the <code>?.</code> prevents a crash if <code>data</code> is null, and <code>??</code> falls back to 3 so the boss still has HP. Without these, a missing config property would throw an error and break the level.</td>
+      </tr>
+      <tr>
+        <td>Assignment</td>
+        <td><code>=</code> <code>+=</code></td>
+        <td><code>this.position.x += vx</code> is what makes the boss 
+and lasers physically move — the position is updated by adding the 
+velocity each frame, creating smooth animation.</td>
+      </tr>
+    </tbody></table>
+  </div>
+ 
+  <h4>Boolean Expression Example — AABB Collision Detection</h4>
+  <pre><code><span class="cm">// All FOUR conditions must be true simultaneously with &amp;&amp; for a collision hit</span>
+<span class="kw">if</span> (hitLeft              &lt;  boss.position.x + boss.width  &amp;&amp;   <span class="cm">// left edge check</span>
+    hitLeft + hitW        &gt;  boss.position.x               &amp;&amp;   <span class="cm">// right edge check</span>
+    hitTop               &lt;  boss.position.y + boss.height  &amp;&amp;   <span class="cm">// top edge check</span>
+    hitTop  + hitH        &gt;  boss.position.y) {                  <span class="cm">// bottom edge check</span>
+  boss.<span class="fn">takeDamage</span>(<span class="num">1</span>);
+  <span class="kw">this</span>.lasers.<span class="fn">splice</span>(i, <span class="num">1</span>);
+}</code></pre>
+  <div class="annotation">
+    These four conditions together check whether a laser rectangle and 
+the boss rectangle overlap on both axes at the same time. If the laser 
+has passed the boss's left edge (<code>hitLeft &lt; boss.x + boss.width</code>),
+ hasn't gone past the right edge, is below the top, and above the bottom
+ — all four true simultaneously means the rectangles intersect and the 
+laser hit. If any one condition is false — for example the laser flew 
+past the boss entirely — the <code>&amp;&amp;</code> chain 
+short-circuits and no damage is dealt. This is what makes hit detection 
+in the game feel spatially accurate rather than registering hits at 
+arbitrary distances.
+  </div>
+ 
+  <h4>📚 Related Homework: Mathematical Expressions</h4>
+  <p><strong><a href="https://aadis12.github.io/student/MathmaticalExpressionsHomework/">Mathematical Expressions Homework</a></strong>
+ - Shows understanding of mathematical operations and expressions, used 
+in the game for position calculations, collision detection, and score 
+computations.</p>
+ 
+  <hr>
+ 
+  <!-- SECTION 6: CONTROL STRUCTURES -->
+  <h2 id="control">🔁 Control Structures</h2>
+ 
+  <h3>Iteration — for loop over laser array</h3>
+  <pre><code><span class="cm">// Iterate backwards through the lasers array — safe to splice while looping</span>
+<span class="kw">for</span> (<span class="kw">let</span> i = <span class="kw">this</span>.lasers.length - <span class="num">1</span>; i &gt;= <span class="num">0</span>; i--) {
+  <span class="kw">const</span> L = <span class="kw">this</span>.lasers[i];
+ 
+  L.x    += L.vx;        <span class="cm">// move laser each frame</span>
+  L.y    += L.vy;
+  L.life -= <span class="num">1</span>;           <span class="cm">// count down lifespan</span>
+ 
+  <span class="kw">if</span> (L.life &lt;= <span class="num">0</span>) {
+    <span class="kw">this</span>.lasers.<span class="fn">splice</span>(i, <span class="num">1</span>);   <span class="cm">// remove expired laser</span>
+    <span class="kw">continue</span>;
+  }
+  <span class="cm">// ... collision checks below ...</span>
+}</code></pre>
+  <div class="annotation">
+    This loop is what makes all lasers fly across the screen 
+simultaneously each frame. Without it, a laser would be spawned and 
+immediately frozen — nothing would update its position. The backwards 
+iteration matters because when a laser expires or hits something, it 
+gets removed from the array with <code>splice(i, 1)</code>. If you loop 
+forward and remove index 3, what was at index 4 slides down to index 3 
+and gets skipped that frame — meaning a laser could pass through the 
+boss without registering a hit. Looping backwards means only 
+already-visited indices shift, so nothing is skipped.
+  </div>
+ 
+  <h3>Conditionals — state transitions in the game loop</h3>
+  <pre><code><span class="fn">update</span>() {
+  <span class="cm">// Conditional 1: guard clause stops execution if battle is over</span>
+  <span class="kw">if</span> (<span class="kw">this</span>.battleEnded) <span class="kw">return</span>;
+ 
+  <span class="cm">// Conditional 2: check win condition</span>
+  <span class="kw">if</span> (boss.isDefeated &amp;&amp; !<span class="kw">this</span>.battleEnded) {
+    <span class="kw">this</span>.battleEnded = <span class="bool">true</span>;
+    <span class="kw">const</span> isFinalLevel = ctrl.currentLevelIndex === ctrl.levelClasses?.length - <span class="num">1</span>;
+    <span class="kw">if</span> (isFinalLevel) {
+      <span class="kw">this</span>.<span class="fn">showWinScreen</span>();
+    } <span class="kw">else</span> {
+      <span class="kw">this</span>.messageTimeout = <span class="fn">setTimeout</span>(() =&gt; {
+        <span class="kw">if</span> (ctrl?.currentLevel) ctrl.currentLevel.continue = <span class="bool">false</span>;
+      }, <span class="num">1100</span>);
+    }
+    <span class="kw">return</span>;
+  }
+ 
+  <span class="cm">// Conditional 3: lose condition</span>
+  <span class="kw">if</span> (<span class="kw">this</span>.playerHealth &lt;= <span class="num">0</span> &amp;&amp; !<span class="kw">this</span>.battleEnded) {
+    <span class="kw">this</span>.battleEnded = <span class="bool">true</span>;
+    <span class="kw">this</span>.<span class="fn">showLoseScreenAndRestart</span>();
+  }
+}</code></pre>
+ 
+  <h3>Nested Conditions — attack cooldown with compound checks</h3>
+  <pre><code><span class="cm">// Outer condition: player pressed SPACE</span>
+<span class="kw">if</span> (<span class="kw">this</span>.attackRequested) {
+  <span class="kw">this</span>.attackRequested = <span class="bool">false</span>;
+ 
+  <span class="cm">// Inner condition: cooldown elapsed AND boss is still alive</span>
+  <span class="kw">if</span> (now - <span class="kw">this</span>.lastAttackAt &gt;= <span class="kw">this</span>.attackCooldownMs &amp;&amp; !boss.isDefeated) {
+    <span class="kw">this</span>.lastAttackAt = now;
+    <span class="kw">this</span>.<span class="fn">spawnLaserStraight</span>(px, py, player.direction, <span class="bool">true</span>);
+  }
+}</code></pre>
+  <div class="annotation">
+    These two layers of conditions prevent the player from holding SPACE
+ and spamming infinite lasers. The outer condition checks that the 
+player actually pressed SPACE this frame (<code>attackRequested</code> gets set to <code>true</code> by the keydown listener). The inner condition then checks two things with <code>&amp;&amp;</code>:
+ enough time has passed since the last shot (the cooldown) AND the boss 
+isn't already dead. If both pass, a laser is spawned and <code>lastAttackAt</code>
+ is updated to restart the cooldown. The result is the player fires one 
+laser at a time with a short delay between shots — which is what gives 
+the combat its rhythm and makes it a challenge rather than a one-button 
+win.
+  </div>
+ 
+  <h4>📚 Related Homework: Nested Conditionals</h4>
+  <p><strong><a href="https://aadis12.github.io/student/NestedConditionalsHomework/">Nested Conditionals Homework</a></strong>
+ - Relates to "Control Structures — Iteration, Conditions, Nested 
+Conditions". This homework demonstrates my understanding of complex 
+decision-making logic using nested if-else statements, which is crucial 
+for game mechanics like boss behavior and win/lose conditions in the 
+Peppa Pig game.</p>
+ 
+  <h4>📚 Related Homework: Iterations</h4>
+  <p><strong><a href="https://aadis12.github.io/student/IterationsHomework/">Iterations Homework</a></strong>
+ - Relates to "Control Structures — Iteration, Conditions, Nested 
+Conditions". Shows proficiency in loops and iteration, essential for 
+game loops, collision detection, and processing arrays of game objects 
+like lasers and enemies.</p>
+ 
+  <hr>
+ 
+  <!-- SECTION 7: I/O -->
+  <h2 id="io">⌨️ Input / Output</h2>
+ 
+  <h3>Keyboard Input — Event Listeners</h3>
+  <p>
+    Keyboard events are captured with <code>addEventListener</code> on the document. The SPACE key triggers laser attacks; WASD is handled by the engine's <code>Player</code> class.
+  </p>
+  <pre><code><span class="cm">// Keyboard event listener registered in initialize()</span>
+<span class="kw">this</span>.boundKeyDown = <span class="kw">this</span>.<span class="fn">handleKeyDown</span>.<span class="fn">bind</span>(<span class="kw">this</span>);
+document.<span class="fn">addEventListener</span>(<span class="str">'keydown'</span>, <span class="kw">this</span>.boundKeyDown);
+ 
+<span class="fn">handleKeyDown</span>(event) {
+  <span class="kw">if</span> (event.code === <span class="str">'Space'</span>) {
+    <span class="kw">this</span>.attackRequested = <span class="bool">true</span>;   <span class="cm">// Boolean flag set on keypress</span>
+    event.<span class="fn">preventDefault</span>();         <span class="cm">// stop page from scrolling</span>
+  }
+}
+ 
+<span class="cm">// Listener is cleaned up in destroy() to prevent memory leaks</span>
+document.<span class="fn">removeEventListener</span>(<span class="str">'keydown'</span>, <span class="kw">this</span>.boundKeyDown);</code></pre>
+
+  <!-- Code Runner: Conditions + Events challenge -->
+  <div class="code-runner-container" id="runner-events" data-storage-key="cs111-blog-runner-events">
+    <div class="challenge-box">
+      <h3>Code Runner Challenge</h3>
+      <p>Simulate a key event system and nested condition logic like your play attack cooldown.</p>
+    </div>
+    <div class="editor-container">
+      <div class="control-panel">
+        <button class="runBtn">▶</button>
+        <button class="copyBtn">⎘</button>
+        <button class="saveBtn">💾</button>
+        <button class="clearStorageBtn">🗑</button>
+        <select class="languageSelect"><option value="javascript" selected="selected">JavaScript</option><option value="python">Python</option><option value="java">Java</option></select>
+        <select class="fontSizeSelect"><option value="14" selected="selected">14px</option><option value="16">16px</option><option value="18">18px</option><option value="20">20px</option></select>
+      </div>
+      <textarea class="editor-textarea" style="display: none;">let attackRequested = true;
+let lastAttackAt = 0;
+let attackCooldown = 500;
+let bossAlive = true;
+
+function tryAttack(now) {
+  if (attackRequested) {
+    attackRequested = false;
+    if (now - lastAttackAt &gt;= attackCooldown &amp;&amp; bossAlive) {
+      lastAttackAt = now;
+      console.log('Attack executed at', now);
+    } else {
+      console.log('Attack blocked: cooldown or boss dead');
+    }
+  } else {
+    console.log('No attack request');
+  }
+}
+
+tryAttack(0);
+tryAttack(100);
+tryAttack(600);
+bossAlive = false;
+tryAttack(1200);</textarea><div class="CodeMirror cm-s-darcula" translate="no"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4px; left: 34px;"><textarea style="position: absolute; bottom: -1em; padding: 0px; width: 1px; height: 1em; min-height: 1em; outline: none;" wrap="off" autocorrect="off" autocapitalize="none" spellcheck="false" tabindex="0"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="display: block; bottom: 0px; width: 18px; visibility: hidden;"><div style="min-width: 1px; height: 661px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true" style="height: 18px; visibility: hidden;"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1" draggable="true"><div class="CodeMirror-sizer" style="margin-left: 30px; margin-bottom: 0px; border-right-width: 50px; min-height: 661px; min-width: 535px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div style="position: relative; outline: none;" role="presentation"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 27.2px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">let</span> <span class="cm-def">attackRequested</span> <span class="cm-operator">=</span> <span class="cm-atom">true</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">let</span> <span class="cm-def">lastAttackAt</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">let</span> <span class="cm-def">attackCooldown</span> <span class="cm-operator">=</span> <span class="cm-number">500</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">let</span> <span class="cm-def">bossAlive</span> <span class="cm-operator">=</span> <span class="cm-atom">true</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">function</span> <span class="cm-def">tryAttack</span>(<span class="cm-def">now</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  <span class="cm-keyword">if</span> (<span class="cm-variable">attackRequested</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-variable">attackRequested</span> <span class="cm-operator">=</span> <span class="cm-atom">false</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">if</span> (<span class="cm-variable-2">now</span> <span class="cm-operator">-</span> <span class="cm-variable">lastAttackAt</span> <span class="cm-operator">&gt;=</span> <span class="cm-variable">attackCooldown</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-variable">bossAlive</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">      <span class="cm-variable">lastAttackAt</span> <span class="cm-operator">=</span> <span class="cm-variable-2">now</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">      <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'Attack executed at'</span>, <span class="cm-variable-2">now</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    } <span class="cm-keyword">else</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">      <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'Attack blocked: cooldown or boss dead'</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">15</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  } <span class="cm-keyword">else</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">16</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'No attack request'</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">17</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">18</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">}</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">19</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">20</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-variable">tryAttack</span>(<span class="cm-number">0</span>);</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 50px; width: 1px; border-bottom: 0px solid transparent; top: 661px;"></div><div class="CodeMirror-gutters" style="height: 711px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div>
+      <div class="control-panel"><span class="lineCount">Lines: 24</span><span class="charCount">Characters: 528</span></div>
+    </div>
+    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">⎘</button><span class="execTime"></span></div><div class="output-content">Click "Run" in code control panel to see output ...</div></div>
+  </div>
+
+  <h3>Canvas Rendering — draw() via GameEngine</h3>
+  <p>
+    All characters are drawn to the HTML5 Canvas each frame. The <code>draw()</code> method is inherited from <code>GameObject</code> and called inside the overridden <code>update()</code>. The hitbox overlay uses the Canvas 2D context directly.
+  </p>
+  <pre><code><span class="cm">// draw() is inherited — called every frame inside update()</span>
+<span class="fn">update</span>() {
+  <span class="kw">this</span>.<span class="fn">draw</span>();   <span class="cm">// Canvas API — renders sprite to canvas element</span>
+  <span class="cm">// ...</span>
+}
+ 
+<span class="cm">// Direct Canvas API usage in drawHitbox()</span>
+<span class="kw">const</span> ctx = <span class="kw">this</span>.gameEnv?.ctx;
+ctx.<span class="fn">strokeRect</span>(<span class="kw">this</span>.position.x, <span class="kw">this</span>.position.y, <span class="kw">this</span>.width, <span class="kw">this</span>.height);</code></pre>
+ 
+  <h3>GameEnv Configuration</h3>
+  <p>
+    The game environment is initialized in the main entry file. Canvas 
+size, level classes, and server URIs are all passed in via the <code>environment</code> object.
+  </p>
+  <pre><code><span class="cm">// 03-v1-1-PeppaPig.md — game entry point</span>
+<span class="kw">const</span> environment = {
+  path:           <span class="str">"{{site.baseurl}}"</span>,
+  pythonURI:      pythonURI,               <span class="cm">// String — backend server</span>
+  javaURI:        javaURI,                 <span class="cm">// String — backend server</span>
+  fetchOptions:   fetchOptions,            <span class="cm">// Object — shared fetch config</span>
+  gameContainer:  document.<span class="fn">getElementById</span>(<span class="str">"gameContainer"</span>),
+  gameCanvas:     document.<span class="fn">getElementById</span>(<span class="str">"gameCanvas"</span>),
+  gameLevelClasses: [PeppaLevel1, PeppaLevel2, PeppaLevel3]   <span class="cm">// Array</span>
+};
+ 
+Game.<span class="fn">main</span>(environment);   <span class="cm">// launches the game loop</span></code></pre>
+ 
+  <hr>
+ 
+  <!-- SECTION 8: API -->
+  <h2 id="api">🌐 API Integration — Leaderboard &amp; Async I/O</h2>
+  <p>
+    The game integrates with a backend leaderboard API using <code>fetch()</code> with <code>async/await</code>. Scores are POSTed when the player wins, and the top scores are GETted for display.
+  </p>
+ 
+  <h3>POST Score (async/await + error handling)</h3>
+  <pre><code><span class="cm">/**
+ * Posts the player's score to the leaderboard API.
+ * @param {string} playerName - the player's username
+ * @param {number} score      - final score to save
+ * @returns {Promise&lt;Object&gt;} parsed JSON response from the server
+ */</span>
+<span class="kw">async</span> <span class="fn">postScore</span>(playerName, score) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> response = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">`${<span class="kw">this</span>.gameEnv.pythonURI}/api/leaderboard`</span>, {
+      method:  <span class="str">'POST'</span>,
+      headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> },
+      body:    JSON.<span class="fn">stringify</span>({ player: playerName, score: score })  <span class="cm">// JSON</span>
+    });
+ 
+    <span class="kw">if</span> (!response.ok) {
+      <span class="kw">throw</span> <span class="kw">new</span> <span class="cls">Error</span>(<span class="str">`HTTP error: ${response.status}`</span>);  <span class="cm">// String template</span>
+    }
+ 
+    <span class="kw">const</span> data = <span class="kw">await</span> response.<span class="fn">json</span>();   <span class="cm">// JSON parsing</span>
+    console.<span class="fn">log</span>(<span class="str">`[Leaderboard] Score saved:`, data</span>);
+    <span class="kw">return</span> data;
+ 
+  } <span class="kw">catch</span> (error) {                         <span class="cm">// API error handling</span>
+    console.<span class="fn">error</span>(<span class="str">`[Leaderboard] POST failed:`, error.message</span>);
+    <span class="kw">return</span> <span class="kw">null</span>;
+  }
+}</code></pre>
+ 
+  <h3>GET Scores (fetch + JSON.parse + object destructuring)</h3>
+  <pre><code><span class="cm">/**
+ * Fetches top leaderboard scores from the API.
+ * @returns {Promise&lt;Array&gt;} array of score objects { player, score, date }
+ */</span>
+<span class="kw">async</span> <span class="fn">getLeaderboard</span>() {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> response = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">`${<span class="kw">this</span>.gameEnv.pythonURI}/api/leaderboard`</span>,
+      <span class="kw">this</span>.gameEnv.fetchOptions
+    );
+    <span class="kw">const</span> data = <span class="kw">await</span> response.<span class="fn">json</span>();       <span class="cm">// JSON.parse equivalent</span>
+ 
+    <span class="cm">// Object destructuring on each entry</span>
+    data.<span class="fn">forEach</span>(({ player, score, date }) =&gt; {
+      console.<span class="fn">log</span>(<span class="str">`${player}: ${score} pts (${date})`</span>);
+    });
+ 
+    <span class="kw">return</span> data;                              <span class="cm">// Array of Objects</span>
+ 
+  } <span class="kw">catch</span> (error) {
+    console.<span class="fn">error</span>(<span class="str">`[Leaderboard] GET failed:`, error.message</span>);
+    <span class="kw">return</span> [];                                <span class="cm">// return empty array on failure</span>
+  }
+}</code></pre>
+  <div class="annotation">
+    Both methods use <strong>async/await</strong> for asynchronous I/O, <strong>try/catch</strong> for API error handling, and <strong>JSON parsing</strong> via <code>response.json()</code>. The GET method also uses <strong>object destructuring</strong> (<code>{ player, score, date }</code>) to unpack each response entry.
+  </div>
+ 
+  <h4>📚 Related Homework: JSON</h4>
+  <p><strong><a href="https://aadis12.github.io/student/JSONHomework/">JSON Homework</a></strong>
+ - Demonstrates JSON parsing and serialization, directly applicable to 
+the game's leaderboard API integration where scores are sent and 
+received as JSON objects.</p>
+ 
+  <hr>
+ 
+  <!-- SECTION 9: COMMENTS -->
+  <h2 id="comments">📝 JSDoc Comments &amp; Code Documentation</h2>
+  <p>
+    Every custom class and method has JSDoc documentation with <code>@param</code> and <code>@returns</code> tags. Inline comments explain non-obvious logic throughout. Comment density exceeds the 10% requirement.
+  </p>
+ 
+  <pre><code><span class="cm">/**
+ * PeppaBossEnemy — custom boss class extending the Enemy base.
+ * Adds health system, defeat state, invulnerability window,
+ * movement AI, and hitbox debug visualization.
+ *
+ * @class PeppaBossEnemy
+ * @extends Enemy
+ * @example
+ * // Instantiated automatically by the engine via this.classes array
+ * const boss = new PeppaBossEnemy(sprite_data_enemy, gameEnv);
+ */</span>
+<span class="kw">class</span> <span class="cls">PeppaBossEnemy</span> <span class="kw">extends</span> <span class="cls">Enemy</span> {
+ 
+  <span class="cm">/**
+   * @param {Object} data              - Sprite and config data
+   * @param {number} data.health       - Starting HP for this boss
+   * @param {number} data.moveSpeed    - Pixels per frame toward player
+   * @param {Object} gameEnv           - Shared game environment reference
+   */</span>
+  <span class="fn">constructor</span>(data = <span class="kw">null</span>, gameEnv = <span class="kw">null</span>) {
+    <span class="kw">super</span>(data, gameEnv);
+    <span class="cm">/** @type {number} Current health points */</span>
+    <span class="kw">this</span>.health = data?.health ?? <span class="num">3</span>;
+    <span class="cm">/** @type {boolean} Whether boss is currently in defeat state */</span>
+    <span class="kw">this</span>.isDefeated = <span class="bool">false</span>;
+  }
+}</code></pre>
+ 
+  <hr>
+ 
+  <!-- SECTION 10: DEBUGGING -->
+  <h2 id="debugging">🐛 Debugging</h2>
+ 
+  <div class="table-wrap">
+    <table>
+      <tbody><tr><th>DevTools Tab</th><th>What I Used It For</th></tr>
+      <tr>
+        <td><strong>Console</strong></td>
+        <td>Every HP change, defeat event, laser spawn, and 
+vulnerability reset logs to the console. I can track the full game state
+ in real time across all 60fps frames without pausing execution.</td>
+      </tr>
+      <tr>
+        <td><strong>Hitbox Visualization</strong></td>
+        <td><code>drawHitbox()</code> draws a red rectangle + fill over 
+the boss sprite showing the exact collision boundary. I used this to fix
+ misaligned hit detection where the sprite image didn't match the 
+logical hitbox rectangle.</td>
+      </tr>
+      <tr>
+        <td><strong>Sources (Breakpoints)</strong></td>
+        <td>Set a breakpoint inside <code>takeDamage()</code> to pause execution mid-frame, step through the invulnerability check line by line, and inspect <code>this.health</code>, <code>this.isVulnerable</code>, and <code>this.lastDamagedAt</code> in the Scope panel.</td>
+      </tr>
+      <tr>
+        <td><strong>Network</strong></td>
+        <td>Inspected the leaderboard <code>fetch()</code> calls — 
+verified the POST request body was correctly JSON-serialized, checked 
+HTTP status codes (200 vs 401 vs 500), identified CORS errors, and read 
+the raw response JSON.</td>
+      </tr>
+      <tr>
+        <td><strong>Application</strong></td>
+        <td>Checked cookies and <code>localStorage</code> to verify the 
+user's login session was persisting correctly between page reloads, and 
+confirmed the auth token was being sent with API requests.</td>
+      </tr>
+      <tr>
+        <td><strong>Elements</strong></td>
+        <td>Used the Element Viewer to inspect the game's canvas 
+element, HUD div, and laser overlay canvas. Verified CSS positioning of 
+the HUD and confirmed the laser layer canvas was appended to the correct
+ container.</td>
+      </tr>
+    </tbody></table>
+  </div>
+ 
+  <div class="image-frame">
+    <img src="CS111%20Blog%20-%20Aadi%20Saini_files/debug.png" alt="Chrome DevTools screenshot showing canvas inspection and debugging for the game">
+    <div class="image-caption">
+      Chrome DevTools debugging view used during development. This 
+screenshot shows live inspection of canvas elements and positioning, 
+which helped verify sprite layers, HUD placement, and collision-related 
+rendering behavior.
+    </div>
+  </div>
+
+  <h4>Console Logging Pattern</h4>
+  <pre><code><span class="cm">// Strategic console.log placement — tracks state in update() and collision methods</span>
+console.<span class="fn">log</span>(<span class="str">`[PeppaBossEnemy] Spawned: ${data?.id} with ${<span class="kw">this</span>.health} HP`</span>);
+console.<span class="fn">log</span>(<span class="str">`[Boss] Hit! HP: ${<span class="kw">this</span>.health}/${<span class="kw">this</span>.maxHealth}`</span>);
+console.<span class="fn">log</span>(<span class="str">`[Boss] Defeated!`</span>);
+console.<span class="fn">log</span>(<span class="str">`[Boss] Invulnerable, ignoring damage.`</span>);
+console.<span class="fn">log</span>(<span class="str">`[Hitbox] pos=(${Math.round(<span class="kw">this</span>.position.x)},${Math.round(<span class="kw">this</span>.position.y)})`</span>);
+console.<span class="fn">log</span>(<span class="str">`[Leaderboard] Score saved:`, data</span>);
+console.<span class="fn">error</span>(<span class="str">`[Leaderboard] POST failed:`, error.message</span>);</code></pre>
+ 
+  <hr>
+ 
+  <!-- SECTION 11: TESTING -->
+  <h2 id="testing">✅ Testing &amp; Verification</h2>
+ 
+  <h3>Gameplay Testing</h3>
+  <p>
+    Each level was play-tested end-to-end to verify: laser collision 
+correctly reduces boss HP, player HP correctly depletes on contact and 
+enemy laser hits, the lose screen appears and the level restarts when 
+player HP hits 0, and the win condition advances to the next level (or 
+shows the final win screen on Level 3).
+  </p>
+ 
+  <h3>Integration Testing — Leaderboard API</h3>
+  <pre><code><span class="cm">// Integration test — verified in browser with Network tab open</span>
+<span class="cm">// 1. Win Level 3 → postScore() fires → Network tab shows POST /api/leaderboard</span>
+<span class="cm">// 2. Response status: 200 OK</span>
+<span class="cm">// 3. Response body: { id: 42, player: "IshanJha", score: 300, date: "2026-03-23" }</span>
+<span class="cm">// 4. getLeaderboard() → GET /api/leaderboard → array of score objects returned</span>
+<span class="cm">// 5. JSON.parse verified — object destructuring logs each entry correctly</span></code></pre>
+ 
+  <h3>API Error Handling — try/catch</h3>
+  <pre><code><span class="cm">// Tested by temporarily pointing pythonURI to a bad endpoint</span>
+<span class="kw">try</span> {
+  <span class="kw">const</span> response = <span class="kw">await</span> <span class="fn">fetch</span>(badUrl, fetchOptions);
+  <span class="kw">if</span> (!response.ok) <span class="kw">throw</span> <span class="kw">new</span> <span class="cls">Error</span>(<span class="str">`HTTP ${response.status}`</span>);
+  <span class="kw">const</span> data = <span class="kw">await</span> response.<span class="fn">json</span>();
+  <span class="kw">return</span> data;
+} <span class="kw">catch</span> (error) {
+  <span class="cm">// Game continues running — leaderboard failure is non-fatal</span>
+  console.<span class="fn">error</span>(<span class="str">`[API] Request failed: ${error.message}`</span>);
+  <span class="kw">return</span> <span class="kw">null</span>;
+}</code></pre>
+  <div class="annotation">
+    All API calls are wrapped in try/catch so a network failure or 
+backend error never crashes the game. The game continues normally and 
+logs the error to console for debugging. This was verified by testing 
+with the backend server offline.
+  </div>
+
+  <!-- Code Runner: API + fetch practice -->
+  <div class="code-runner-container" id="runner-api" data-storage-key="cs111-blog-runner-api">
+    <div class="challenge-box">
+      <h3>Code Runner Challenge</h3>
+      <p>Experiment with async/await and mock fetch JSON handling. This mimics posting and reading leaderboard data.</p>
+    </div>
+    <div class="editor-container">
+      <div class="control-panel">
+        <button class="runBtn">▶</button>
+        <button class="copyBtn">⎘</button>
+        <button class="saveBtn">💾</button>
+        <button class="clearStorageBtn">🗑</button>
+        <select class="languageSelect"><option value="javascript" selected="selected">JavaScript</option><option value="python">Python</option><option value="java">Java</option></select>
+        <select class="fontSizeSelect"><option value="14" selected="selected">14px</option><option value="16">16px</option><option value="18">18px</option><option value="20">20px</option></select>
+      </div>
+      <textarea class="editor-textarea" style="display: none;">async function postScore(player, score) {
+  try {
+    const payload = JSON.stringify({ player, score });
+    console.log('POST payload', payload);
+    return { ok: true, data: { player, score, date: '2026-03-24' } };
+  } catch (e) {
+    console.error('postScore error', e.message);
+    return null;
+  }
+}
+
+async function getLeaderboard() {
+  try {
+    const data = [
+      { player: 'Aadi', score: 300 },
+      { player: 'Ishan', score: 280 }
+    ];
+    data.forEach(({ player, score }) =&gt; console.log(`${player}: ${score}`));
+    return data;
+  } catch (e) {
+    console.error('getLeaderboard error', e.message);
+    return [];
+  }
+}
+
+await postScore('Player1', 999);
+await getLeaderboard();</textarea><div class="CodeMirror cm-s-darcula" translate="no"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4px; left: 34px;"><textarea style="position: absolute; bottom: -1em; padding: 0px; width: 1px; height: 1em; min-height: 1em; outline: none;" wrap="off" autocorrect="off" autocapitalize="none" spellcheck="false" tabindex="0"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="display: block; bottom: 0px; width: 18px; visibility: hidden;"><div style="min-width: 1px; height: 742px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true" style="height: 18px; visibility: hidden;"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1" draggable="true"><div class="CodeMirror-sizer" style="margin-left: 30px; margin-bottom: 0px; border-right-width: 50px; min-height: 742px; min-width: 675.8px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div style="position: relative; outline: none;" role="presentation"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 27.2px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">async</span> <span class="cm-keyword">function</span> <span class="cm-def">postScore</span>(<span class="cm-def">player</span>, <span class="cm-def">score</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  <span class="cm-keyword">try</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">const</span> <span class="cm-def">payload</span> <span class="cm-operator">=</span> <span class="cm-variable">JSON</span>.<span class="cm-property">stringify</span>({ <span class="cm-property">player</span>, <span class="cm-property">score</span> });</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'POST payload'</span>, <span class="cm-variable-2">payload</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">return</span> { <span class="cm-property">ok</span>: <span class="cm-atom">true</span>, <span class="cm-property">data</span>: { <span class="cm-property">player</span>, <span class="cm-property">score</span>, <span class="cm-property">date</span>: <span class="cm-string">'2026-03-24'</span> } };</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  } <span class="cm-keyword">catch</span> (<span class="cm-def">e</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-variable">console</span>.<span class="cm-property">error</span>(<span class="cm-string">'postScore error'</span>, <span class="cm-variable-2">e</span>.<span class="cm-property">message</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">return</span> <span class="cm-atom">null</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">}</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">async</span> <span class="cm-keyword">function</span> <span class="cm-def">getLeaderboard</span>() {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  <span class="cm-keyword">try</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">const</span> <span class="cm-def">data</span> <span class="cm-operator">=</span> [</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">15</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">      { <span class="cm-property">player</span>: <span class="cm-string">'Aadi'</span>, <span class="cm-property">score</span>: <span class="cm-number">300</span> },</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">16</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">      { <span class="cm-property">player</span>: <span class="cm-string">'Ishan'</span>, <span class="cm-property">score</span>: <span class="cm-number">280</span> }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">17</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    ];</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">18</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-variable-2">data</span>.<span class="cm-property">forEach</span>(({ <span class="cm-def">player</span>, <span class="cm-def">score</span> }) <span class="cm-operator">=&gt;</span> <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string-2">`${</span><span class="cm-variable-2">player</span><span class="cm-string-2">}: ${</span><span class="cm-variable-2">score</span><span class="cm-string-2">}`</span>));</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">19</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">return</span> <span class="cm-variable-2">data</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">20</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  } <span class="cm-keyword">catch</span> (<span class="cm-def">e</span>) {</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 50px; width: 1px; border-bottom: 0px solid transparent; top: 742px;"></div><div class="CodeMirror-gutters" style="height: 792px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div>
+      <div class="control-panel"><span class="lineCount">Lines: 27</span><span class="charCount">Characters: 692</span></div>
+    </div>
+    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">⎘</button><span class="execTime"></span></div><div class="output-content">Click "Run" in code control panel to see output ...</div></div>
+  </div>
+
+  <hr>
+
+  <!-- SECTION 12: OTHER GAMES -->
+  <h2 id="other-games">🕹️ Other Game Examples &amp; Rubric Connections</h2>
+  <p>
+    In addition to Peppa Pig Fight Club, I built other games that 
+reinforce the same CS111 concepts in different ways. These projects help
+ show that the rubric skills in this blog were not used only once — I 
+also applied OOP, methods, arrays, conditionals, input/output, and 
+game-state logic in Tic-Tac-Toe, Connect 4, and Whack-a-Mole.
+  </p>
+
+  <div class="hero-actions">
+    <a class="play-button" href="https://rashig-1804.github.io/csse_teamrepo/hacks/TicTacToe/" target="_blank" rel="noopener noreferrer" style="margin: 0 8px 12px;">▶ Play Tic-Tac-Toe</a>
+    <a class="play-button" href="https://rashig-1804.github.io/csse_teamrepo/connect4/" target="_blank" rel="noopener noreferrer" style="margin: 0 8px 12px;">▶ Play Connect 4</a>
+    <a class="play-button" href="https://aadis12.github.io/student/hacks/whackamole" target="_blank" rel="noopener noreferrer" style="margin: 0 8px 12px;">▶ Play Whack-a-Mole</a>
+  </div>
+
+  <div class="callout callout-green">
+    <strong>Why these examples matter:</strong> they provide additional 
+proof for the rubric categories by showing the same programming ideas 
+across multiple projects, not just one final game.
+  </div>
+
+  <h3>Tic-Tac-Toe — OOP Structure and Game Orchestration</h3>
+  <p>
+    My Tic-Tac-Toe lesson is a clean example of object-oriented design. It separates responsibility into a <code>Player</code> class, a <code>Board</code> class, and a <code>TicTacToe</code>
+ controller class. That structure directly supports the rubric 
+requirement for custom classes and methods because each class has a 
+distinct job: player identity, board state, and overall game flow.
+  </p>
+
+  <div class="image-frame">
+    <img src="CS111%20Blog%20-%20Aadi%20Saini_files/TicTacToe.png" alt="Tic Tac Toe game screenshot">
+    <div class="image-caption">
+      Tic-Tac-Toe gameplay demonstrating object-oriented design with 
+Player, Board, and TicTacToe classes managing game state and logic.
+    </div>
+  </div>
+
+  <pre><code><span class="kw">class</span> <span class="cls">Player</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name, symbol):
+        self.name = name
+        self.symbol = symbol
+
+<span class="kw">class</span> <span class="cls">Board</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self):
+        self.grid = [<span class="str">" "</span>] * <span class="num">9</span>
+
+    <span class="kw">def</span> <span class="fn">make_move</span>(self, position, symbol):
+        index = position - <span class="num">1</span>
+        <span class="kw">if</span> index &lt; <span class="num">0</span> <span class="kw">or</span> index &gt; <span class="num">8</span>:
+            <span class="kw">return</span> <span class="bool">False</span>
+        <span class="kw">if</span> self.grid[index] != <span class="str">" "</span>:
+            <span class="kw">return</span> <span class="bool">False</span>
+        self.grid[index] = symbol
+        <span class="kw">return</span> <span class="bool">True</span>
+
+    <span class="kw">def</span> <span class="fn">check_winner</span>(self, symbol):
+        win_combinations = [
+            [<span class="num">0</span>,<span class="num">1</span>,<span class="num">2</span>], [<span class="num">3</span>,<span class="num">4</span>,<span class="num">5</span>], [<span class="num">6</span>,<span class="num">7</span>,<span class="num">8</span>],
+            [<span class="num">0</span>,<span class="num">3</span>,<span class="num">6</span>], [<span class="num">1</span>,<span class="num">4</span>,<span class="num">7</span>], [<span class="num">2</span>,<span class="num">5</span>,<span class="num">8</span>],
+            [<span class="num">0</span>,<span class="num">4</span>,<span class="num">8</span>], [<span class="num">2</span>,<span class="num">4</span>,<span class="num">6</span>]
+        ]
+        <span class="kw">for</span> combo <span class="kw">in</span> win_combinations:
+            <span class="kw">if</span> (self.grid[combo[<span class="num">0</span>]] == symbol <span class="kw">and</span>
+                self.grid[combo[<span class="num">1</span>]] == symbol <span class="kw">and</span>
+                self.grid[combo[<span class="num">2</span>]] == symbol):
+                <span class="kw">return</span> <span class="bool">True</span>
+        <span class="kw">return</span> <span class="bool">False</span>
+
+<span class="kw">class</span> <span class="cls">TicTacToe</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, player1, player2):
+        self.board = Board()
+        self.players = [player1, player2]
+        self.current_player = player1</code></pre>
+
+  <div class="annotation">
+    <strong>Rubric connection:</strong> Tic-Tac-Toe gives another 
+example of custom classes, arrays, boolean return values, validation 
+logic, and game orchestration. The <code>make_move()</code> and <code>check_winner()</code> methods are especially useful as examples of return values, conditionals, and iteration through game-state data.
+  </div>
+
+  <h3>Connect 4 — Multiple Classes, UI Management, and DOM-Based Input/Output</h3>
+  <p>
+    My Connect 4 project is another strong OOP example because it uses multiple JavaScript classes working together: <code>Player</code>, <code>GameBoard</code>, <code>GameTimer</code>, <code>GameUI</code>, and <code>Connect4Game</code>.
+ This shows deeper class-based design and supports the rubric categories
+ for arrays, methods, user input, UI output, timers, and conditional 
+game-state logic.
+  </p>
+
+  <div class="image-frame">
+    <img src="CS111%20Blog%20-%20Aadi%20Saini_files/Connect4.png" alt="Connect 4 game screenshot">
+    <div class="image-caption">
+      Connect 4 interface showing grid-based gameplay, event-driven 
+input, and class-based architecture managing board state, players, and 
+UI updates.
+    </div>
+  </div>
+
+  <pre><code><span class="kw">class</span> <span class="cls">Player</span> {
+  <span class="fn">constructor</span>(name, color, isRobot = <span class="bool">false</span>) {
+    <span class="kw">this</span>.name = name;
+    <span class="kw">this</span>.color = color;
+    <span class="kw">this</span>.time = <span class="num">300</span>;
+    <span class="kw">this</span>.coins = <span class="num">21</span>;
+    <span class="kw">this</span>.isRobot = !!isRobot;
+  }
+
+  <span class="fn">usesCoin</span>() {
+    <span class="kw">if</span> (<span class="kw">this</span>.coins &gt; <span class="num">0</span>) {
+      <span class="kw">this</span>.coins--;
+      <span class="kw">return</span> <span class="bool">true</span>;
+    }
+    <span class="kw">return</span> <span class="bool">false</span>;
+  }
+}
+
+<span class="kw">class</span> <span class="cls">GameBoard</span> {
+  <span class="fn">constructor</span>(rows = <span class="num">6</span>, cols = <span class="num">7</span>) {
+    <span class="kw">this</span>.rows = rows;
+    <span class="kw">this</span>.cols = cols;
+    <span class="kw">this</span>.grid = [];
+    <span class="kw">this</span>.<span class="fn">initialize</span>();
+  }
+
+  <span class="fn">initialize</span>() {
+    <span class="kw">this</span>.grid = Array.<span class="fn">from</span>({length: <span class="kw">this</span>.rows}, () =&gt; Array(<span class="kw">this</span>.cols).<span class="fn">fill</span>(<span class="kw">null</span>));
+  }
+
+  <span class="fn">isValidColumn</span>(col) {
+    <span class="kw">return</span> col &gt;= <span class="num">0</span> &amp;&amp; col &lt; <span class="kw">this</span>.cols &amp;&amp; <span class="kw">this</span>.grid[<span class="num">0</span>][col] === <span class="kw">null</span>;
+  }
+
+  <span class="fn">checkWin</span>(row, col) {
+    <span class="kw">const</span> color = <span class="kw">this</span>.grid[row][col];
+    <span class="kw">if</span> (!color) <span class="kw">return</span> <span class="bool">false</span>;
+    <span class="cm">// checks vertical, horizontal, and diagonal directions</span>
+    <span class="kw">return</span> <span class="bool">true</span>;
+  }
+}
+
+<span class="kw">class</span> <span class="cls">Connect4Game</span> {
+  <span class="fn">constructor</span>() {
+    <span class="kw">this</span>.board = <span class="kw">new</span> <span class="cls">GameBoard</span>(<span class="num">6</span>, <span class="num">7</span>);
+    <span class="kw">this</span>.redPlayer = <span class="kw">new</span> <span class="cls">Player</span>(<span class="str">'Red'</span>, <span class="str">'red'</span>);
+    <span class="kw">this</span>.yellowPlayer = <span class="kw">new</span> <span class="cls">Player</span>(<span class="str">'Yellow'</span>, <span class="str">'yellow'</span>);
+  }
+}</code></pre>
+
+  <div class="annotation">
+    <strong>Rubric connection:</strong> Connect 4 strengthens evidence 
+for custom classes, arrays of arrays, return values, event listeners, 
+DOM output, timers, and nested conditions. It also shows another style 
+of input/output beyond canvas sprite games, because the interface 
+updates board cells, timers, and score panels directly in the browser.
+  </div>
+
+  <h3>Whack-a-Mole — Inheritance, Canvas Rendering, Audio, and Stored Game Data</h3>
+  <p>
+    My Whack-a-Mole game is especially useful for the rubric because it 
+demonstrates inheritance in a different way than Peppa Pig Fight Club. 
+The base <code>Entity</code> class is extended by <code>Mole</code> and <code>Bomb</code>, while the <code>Game</code> class manages canvas rendering, input handling, scorekeeping, difficulty settings, and browser storage for high scores.
+  </p>
+
+  <div class="image-frame">
+    <img src="CS111%20Blog%20-%20Aadi%20Saini_files/WhackAMole.png" alt="Whack a Mole game screenshot">
+    <div class="image-caption">
+      Whack-a-Mole gameplay using inheritance (Entity → Mole/Bomb), 
+canvas rendering, animation loops, and score tracking with persistent 
+storage.
+    </div>
+  </div>
+
+  <pre><code><span class="kw">class</span> <span class="cls">Entity</span> {
+  <span class="fn">constructor</span>(hole, lifetime = <span class="num">1400</span>) {
+    <span class="kw">this</span>.hole = hole;
+    <span class="kw">this</span>.life = lifetime;
+    <span class="kw">this</span>.spawnTime = Date.<span class="fn">now</span>();
+    <span class="kw">this</span>.active = <span class="bool">true</span>;
+  }
+
+  <span class="fn">update</span>(dt, game) {
+    <span class="kw">if</span> (!<span class="kw">this</span>.active) <span class="kw">return</span>;
+    <span class="kw">if</span> (Date.<span class="fn">now</span>() - <span class="kw">this</span>.spawnTime &gt; <span class="kw">this</span>.life) <span class="kw">this</span>.<span class="fn">expire</span>(game);
+  }
+
+  <span class="fn">onHit</span>(game) {
+    <span class="kw">this</span>.<span class="fn">expire</span>(game);
+  }
+}
+
+<span class="kw">class</span> <span class="cls">Mole</span> <span class="kw">extends</span> <span class="cls">Entity</span> {
+  <span class="fn">constructor</span>(hole, type = <span class="str">'brown'</span>) {
+    <span class="kw">super</span>(hole, <span class="num">1200</span>);
+    <span class="kw">this</span>.type = type;
+    <span class="kw">this</span>.points = (type === <span class="str">'blue'</span> ? <span class="num">50</span> : <span class="num">10</span>);
+  }
+
+  <span class="fn">onHit</span>(game) {
+    game.<span class="fn">addScore</span>(<span class="kw">this</span>.points);
+    <span class="kw">if</span> (<span class="kw">this</span>.type === <span class="str">'blue'</span>) game.<span class="fn">speedUp</span>();
+    <span class="kw">super</span>.<span class="fn">onHit</span>(game);
+  }
+}
+
+<span class="kw">class</span> <span class="cls">Bomb</span> <span class="kw">extends</span> <span class="cls">Entity</span> {
+  <span class="fn">constructor</span>(hole) {
+    <span class="kw">super</span>(hole, <span class="num">1200</span>);
+  }
+
+  <span class="fn">onHit</span>(game) {
+    <span class="kw">super</span>.<span class="fn">onHit</span>(game);
+    game.lives -= <span class="num">2</span>;
+    <span class="kw">if</span> (game.lives &lt;= <span class="num">0</span>) game.<span class="fn">end</span>();
+  }
+}</code></pre>
+
+  <div class="annotation">
+    <strong>Rubric connection:</strong> Whack-a-Mole adds even more evidence for inheritance, method overriding, constructor chaining with <code>super()</code>, canvas output, animation/game loops, browser input, and persistent data using <code>localStorage</code>. It also shows that I used object-oriented programming in multiple independent projects, not only in this final game.
+  </div>
+
+  <div class="callout callout-blue">
+    <strong>Overall connection to the rubric:</strong> these additional 
+games strengthen my evidence for OOP, classes, methods, arrays, 
+booleans, conditionals, iteration, DOM/canvas input-output, event 
+listeners, and reusable game architecture across multiple projects.
+  </div>
+
+  <hr>
+
+  <!-- HOMEWORK LINKS SECTION -->
+  <h2 id="homework-links">📚 Homework Assignments</h2>
+  <p>
+    All CS111 homework assignments have been integrated into their 
+relevant sections above, where they directly demonstrate the concepts 
+discussed. Each homework link appears in the section it best 
+exemplifies, with explanations of how it relates to the main topics.
+  </p>
+  <p>
+    For a complete list of all assignments, see the individual section homework links throughout this blog.
+  </p>
+
+  <div class="callout callout-green">
+    <strong>Homework-blog connection:</strong> Each homework assignment 
+reinforces the programming concepts I applied in building the Peppa Pig 
+Fight Club game, showing a comprehensive understanding of CS111 
+fundamentals across multiple independent projects.
+  </div>
+
+  
+  <div class="footer">
+    Built with JavaScript, Canvas API, and the OCS GameEngine<br>
+    CSSE Final Project — Sprint 6 • Ishan Jha • Mar 23, 2026
+  </div>
+ 
+</div>
+<script>
+(function() {
+  const containers = document.querySelectorAll('.code-runner-container');
+  if (!containers.length || typeof CodeMirror === 'undefined') return;
+
+  containers.forEach(container => {
+    const textarea = container.querySelector('.editor-textarea');
+    const storageKey = container.dataset.storageKey;
+    const savedCode = storageKey ? localStorage.getItem(storageKey) : null;
+    const defaultCode = textarea.textContent || '';
+    const initialCode = savedCode !== null ? savedCode : defaultCode;
+
+    const editor = CodeMirror.fromTextArea(textarea, {
+      lineNumbers: true,
+      mode: 'javascript',
+      theme: 'darcula',
+      indentUnit: 4,
+      tabSize: 4
+    });
+    editor.setValue(initialCode);
+
+    const runBtn = container.querySelector('.runBtn');
+    const copyBtn = container.querySelector('.copyBtn');
+    const saveBtn = container.querySelector('.saveBtn');
+    const clearBtn = container.querySelector('.clearStorageBtn');
+    const outputContent = container.querySelector('.output-content');
+    const lineCount = container.querySelector('.lineCount');
+    const charCount = container.querySelector('.charCount');
+    const execTime = container.querySelector('.execTime');
+    const languageSelect = container.querySelector('.languageSelect');
+    const fontSizeSelect = container.querySelector('.fontSizeSelect');
+
+    function refreshStats() {
+      const code = editor.getValue();
+      lineCount.textContent = `Lines: ${code.split('\n').length}`;
+      charCount.textContent = `Characters: ${code.length}`;
+    }
+
+    editor.on('change', refreshStats);
+    refreshStats();
+
+    fontSizeSelect?.addEventListener('change', () => {
+      const size = fontSizeSelect.value;
+      const cm = container.querySelector('.CodeMirror');
+      if (cm) cm.style.fontSize = size + 'px';
+      editor.refresh();
+    });
+
+    languageSelect?.addEventListener('change', () => {
+      const lang = languageSelect.value;
+      if (lang === 'javascript') editor.setOption('mode', 'javascript');
+      if (lang === 'python') editor.setOption('mode', 'python');
+      if (lang === 'java') editor.setOption('mode', 'text/x-java');
+    });
+
+    clearBtn?.addEventListener('click', () => {
+      if (storageKey) localStorage.removeItem(storageKey);
+      editor.setValue(defaultCode);
+      outputContent.textContent = 'Storage cleared. Code reset to default.';
+      execTime.textContent = '';
+    });
+
+    saveBtn?.addEventListener('click', () => {
+      if (storageKey) localStorage.setItem(storageKey, editor.getValue());
+      const old = saveBtn.textContent;
+      saveBtn.textContent = '✔';
+      setTimeout(() => saveBtn.textContent = old, 1200);
+    });
+
+    copyBtn?.addEventListener('click', () => {
+      navigator.clipboard.writeText(editor.getValue());
+      const old = copyBtn.textContent;
+      copyBtn.textContent = '✔';
+      setTimeout(() => copyBtn.textContent = old, 1200);
+    });
+
+    container.querySelector('.copyOutputBtn')?.addEventListener('click', () => {
+      navigator.clipboard.writeText(outputContent.textContent);
+    });
+
+    function runCode() {
+      const code = editor.getValue();
+      const lang = languageSelect?.value || 'javascript';
+      outputContent.textContent = '⏳ Running...';
+      execTime.textContent = '';
+      const start = Date.now();
+
+      if (lang === 'javascript') {
+        const logs = [];
+        const origLog = console.log;
+        console.log = (...args) => {
+          logs.push(args.map(a => String(a)).join(' '));
+          origLog.apply(console, args);
+        };
+
+        try {
+          // eslint-disable-next-line no-eval
+          eval(code);
+          outputContent.textContent = logs.length ? logs.join('\n') : '[no output]';
+        } catch (err) {
+          outputContent.textContent = 'Error: ' + (err.message || err);
+        } finally {
+          console.log = origLog;
+          execTime.textContent = `⏱ Execution time: ${Date.now() - start}ms`;
+        }
+      } else {
+        outputContent.textContent = `⚠️ ${lang} execution is only available when integrated with the backend API. (Use site environment)`;
+      }
+    }
+
+    runBtn?.addEventListener('click', runCode);
+    editor.setOption('extraKeys', { 'Ctrl-Enter': runCode, 'Cmd-Enter': runCode });
+  });
+})();
+</script>
+
+
+ 
+
+
+
+
+
+
+
+
+</body></html>
