@@ -2,13 +2,13 @@ title: Open Coding
 description: "Class of 2026"
 owner_name: Ishan Jha
 github_username: Jupiterian 
-github_repo: "portfolio" 
-baseurl: "/portfolio" 
+github_repo: "CSSE1-portfolio" 
+baseurl: "/CSSE1-portfolio" 
 future: true
 minima:
   skin: dark
   social_links:
-    - { platform: github, user_url: "https://github.com/TDWolff/"}
+    - { platform: github, user_url: "https://github.com/Jupiterian/"}
     - { platform: youtube, user_url: "https://www.youtube.com/@nighthawkcodingsociety2868"} 
 # remote_theme: pages-themes/midnight@v0.2.0
 # remote_theme: pages-themes/cayman@v0.2.0
