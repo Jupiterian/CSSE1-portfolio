@@ -365,6 +365,58 @@
     padding: 12px;
   }
 
+  .CodeMirror {
+    height: auto;
+    min-height: 220px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: #e0e8ff;
+    background: #1a2558;
+  }
+
+  .CodeMirror-scroll {
+    min-height: 220px;
+  }
+
+  .CodeMirror pre,
+  .CodeMirror-line {
+    color: #e0e8ff;
+  }
+
+  .CodeMirror-code,
+  .CodeMirror-code span {
+    color: #e0e8ff;
+  }
+
+  .CodeMirror-lines,
+  .CodeMirror-line,
+  .CodeMirror pre {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .cm-force-visible,
+  .cm-force-visible .CodeMirror-line,
+  .cm-force-visible .CodeMirror-line *,
+  .cm-force-visible .CodeMirror-code,
+  .cm-force-visible .CodeMirror-code span {
+    color: #e0e8ff !important;
+  }
+
+  .cm-force-visible .CodeMirror-scroll,
+  .cm-force-visible .CodeMirror-gutters {
+    background: #1a2558 !important;
+  }
+
+  .CodeMirror-cursor {
+    border-left: 1px solid #00d9ff;
+  }
+
+  .CodeMirror-gutters {
+    background: #0f1535;
+    border-right: 1px solid #2a3a6a;
+  }
+
   .output-content {
     background: #1a2558;
     border: 1px solid #2a3a6a;
@@ -627,6 +679,10 @@
   pre,
   .annotation {
     display: none;
+  }
+
+  .CodeMirror pre {
+    display: block !important;
   }
 
   .kw   { color: #ff7b72; font-weight: 700; }
@@ -1569,29 +1625,41 @@ tryAttack(1200);</textarea>
     Built with JavaScript, Canvas API, and the OCS GameEngine<br>
     CSSE Final Project — Sprint 6 • Ishan Jha • Mar 23, 2026
   </div>
- 
 </script>
 </div>
 <script>
-(function() {
+document.addEventListener('DOMContentLoaded', () => {
   const containers = document.querySelectorAll('.code-runner-container');
-  if (!containers.length || typeof CodeMirror === 'undefined') return;
+  if (!containers.length) return;
+
+  const storage = (() => {
+    try {
+      const testKey = '__runner_test__';
+      localStorage.setItem(testKey, '1');
+      localStorage.removeItem(testKey);
+      return {
+        get: key => localStorage.getItem(key),
+        set: (key, value) => localStorage.setItem(key, value),
+        remove: key => localStorage.removeItem(key)
+      };
+    } catch (err) {
+      return {
+        get: () => null,
+        set: () => {},
+        remove: () => {}
+      };
+    }
+  })();
 
   containers.forEach(container => {
     const textarea = container.querySelector('.editor-textarea');
-    const storageKey = container.dataset.storageKey;
-    const savedCode = storageKey ? localStorage.getItem(storageKey) : null;
-    const defaultCode = textarea.textContent || '';
-    const initialCode = savedCode !== null ? savedCode : defaultCode;
+    if (!textarea) return;
 
-    const editor = CodeMirror.fromTextArea(textarea, {
-      lineNumbers: true,
-      mode: 'javascript',
-      theme: 'darcula',
-      indentUnit: 4,
-      tabSize: 4
-    });
-    editor.setValue(initialCode);
+    const storageKey = container.dataset.storageKey;
+    const savedCode = storageKey ? storage.get(storageKey) : null;
+    const defaultCode = textarea.value || textarea.textContent || '';
+    const hasSaved = savedCode !== null && savedCode.trim().length > 0;
+    const initialCode = hasSaved ? savedCode : defaultCode;
 
     const runBtn = container.querySelector('.runBtn');
     const copyBtn = container.querySelector('.copyBtn');
@@ -1604,59 +1672,97 @@ tryAttack(1200);</textarea>
     const languageSelect = container.querySelector('.languageSelect');
     const fontSizeSelect = container.querySelector('.fontSizeSelect');
 
-    function refreshStats() {
-      const code = editor.getValue();
-      lineCount.textContent = `Lines: ${code.split('\n').length}`;
-      charCount.textContent = `Characters: ${code.length}`;
+    let editor = null;
+    if (typeof CodeMirror !== 'undefined') {
+      editor = CodeMirror.fromTextArea(textarea, {
+        lineNumbers: true,
+        mode: 'javascript',
+        theme: 'darcula',
+        indentUnit: 4,
+        tabSize: 4
+      });
+      editor.setValue(initialCode);
+      const wrapper = editor.getWrapperElement();
+      wrapper.classList.add('cm-force-visible');
+      wrapper.style.background = '#1a2558';
+      wrapper.style.color = '#e0e8ff';
+      const scroller = editor.getScrollerElement();
+      if (scroller) scroller.style.background = '#1a2558';
+    } else {
+      textarea.value = initialCode;
+      textarea.style.minHeight = '220px';
+      textarea.style.display = 'block';
     }
 
-    editor.on('change', refreshStats);
+    const getCode = () => (editor ? editor.getValue() : textarea.value);
+    const setCode = (value) => {
+      if (editor) editor.setValue(value);
+      else textarea.value = value;
+    };
+
+    function refreshStats() {
+      const code = getCode();
+      if (lineCount) lineCount.textContent = `Lines: ${code.split('\n').length}`;
+      if (charCount) charCount.textContent = `Characters: ${code.length}`;
+    }
+
+    if (editor) {
+      editor.on('change', refreshStats);
+      editor.setOption('extraKeys', { 'Ctrl-Enter': runCode, 'Cmd-Enter': runCode });
+    } else {
+      textarea.addEventListener('input', refreshStats);
+    }
     refreshStats();
 
     fontSizeSelect?.addEventListener('change', () => {
-      const size = fontSizeSelect.value;
+      const size = fontSizeSelect.value + 'px';
       const cm = container.querySelector('.CodeMirror');
-      if (cm) cm.style.fontSize = size + 'px';
-      editor.refresh();
+      if (cm) cm.style.fontSize = size;
+      if (!cm) textarea.style.fontSize = size;
+      editor?.refresh();
     });
 
     languageSelect?.addEventListener('change', () => {
       const lang = languageSelect.value;
+      if (!editor) return;
       if (lang === 'javascript') editor.setOption('mode', 'javascript');
       if (lang === 'python') editor.setOption('mode', 'python');
       if (lang === 'java') editor.setOption('mode', 'text/x-java');
     });
 
     clearBtn?.addEventListener('click', () => {
-      if (storageKey) localStorage.removeItem(storageKey);
-      editor.setValue(defaultCode);
-      outputContent.textContent = 'Storage cleared. Code reset to default.';
-      execTime.textContent = '';
+      if (storageKey) storage.remove(storageKey);
+      setCode(defaultCode);
+      if (outputContent) outputContent.textContent = 'Storage cleared. Code reset to default.';
+      if (execTime) execTime.textContent = '';
+      refreshStats();
     });
 
     saveBtn?.addEventListener('click', () => {
-      if (storageKey) localStorage.setItem(storageKey, editor.getValue());
+      if (storageKey) storage.set(storageKey, getCode());
+      if (!saveBtn) return;
       const old = saveBtn.textContent;
       saveBtn.textContent = '✔';
       setTimeout(() => saveBtn.textContent = old, 1200);
     });
 
     copyBtn?.addEventListener('click', () => {
-      navigator.clipboard.writeText(editor.getValue());
+      navigator.clipboard.writeText(getCode());
+      if (!copyBtn) return;
       const old = copyBtn.textContent;
       copyBtn.textContent = '✔';
       setTimeout(() => copyBtn.textContent = old, 1200);
     });
 
     container.querySelector('.copyOutputBtn')?.addEventListener('click', () => {
-      navigator.clipboard.writeText(outputContent.textContent);
+      if (outputContent) navigator.clipboard.writeText(outputContent.textContent);
     });
 
     function runCode() {
-      const code = editor.getValue();
+      const code = getCode();
       const lang = languageSelect?.value || 'javascript';
-      outputContent.textContent = '⏳ Running...';
-      execTime.textContent = '';
+      if (outputContent) outputContent.textContent = '⏳ Running...';
+      if (execTime) execTime.textContent = '';
       const start = Date.now();
 
       if (lang === 'javascript') {
@@ -1670,22 +1776,26 @@ tryAttack(1200);</textarea>
         try {
           // eslint-disable-next-line no-eval
           eval(code);
-          outputContent.textContent = logs.length ? logs.join('\n') : '[no output]';
+          if (outputContent) outputContent.textContent = logs.length ? logs.join('\n') : '[no output]';
         } catch (err) {
-          outputContent.textContent = 'Error: ' + (err.message || err);
+          if (outputContent) outputContent.textContent = 'Error: ' + (err.message || err);
         } finally {
           console.log = origLog;
-          execTime.textContent = `⏱ Execution time: ${Date.now() - start}ms`;
+          if (execTime) execTime.textContent = `⏱ Execution time: ${Date.now() - start}ms`;
         }
       } else {
-        outputContent.textContent = `⚠️ ${lang} execution is only available when integrated with the backend API. (Use site environment)`;
+        if (outputContent) {
+          outputContent.textContent = `⚠️ ${lang} execution is only available when integrated with the backend API. (Use site environment)`;
+        }
       }
     }
 
-    runBtn?.addEventListener('click', runCode);
-    editor.setOption('extraKeys', { 'Ctrl-Enter': runCode, 'Cmd-Enter': runCode });
+    runBtn?.addEventListener('click', (event) => {
+      event.preventDefault();
+      runCode();
+    });
   });
-})();
+});
 </script>
 
 
