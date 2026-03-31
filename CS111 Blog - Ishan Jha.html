@@ -1,232 +1,224 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CS111 Blog - Ishan Jha</title>
-<link href="CS111%20Blog%20-%20Ishan%20Jha_files/css2.css" rel="stylesheet">
-<link rel="stylesheet" href="CS111%20Blog%20-%20Ishan%20Jha_files/codemirror.min.css">
-<link rel="stylesheet" href="CS111%20Blog%20-%20Ishan%20Jha_files/darcula.min.css">
-<script src="CS111%20Blog%20-%20Ishan%20Jha_files/codemirror.min.js"></script>
-<script src="CS111%20Blog%20-%20Ishan%20Jha_files/python.min.js"></script>
-<script src="CS111%20Blog%20-%20Ishan%20Jha_files/clike.min.js"></script>
-<script src="CS111%20Blog%20-%20Ishan%20Jha_files/javascript.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/darcula.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
  
   body {
-    background: #0a0e27;
-    color: #e0e8ff;
+    background: #0d1117;
+    color: #e6edf3;
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.7;
   }
  
-  a { color: #00d9ff; text-decoration: none; transition: color 0.2s; }
-  a:hover { color: #00ffd5; text-decoration: none; text-shadow: 0 0 10px #00d9ff; }
+  a { color: #58a6ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
  
   .page {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 60px 24px 100px;
   }
  
   .meta {
     text-align: center;
-    color: #a0a8d8;
+    color: #8b949e;
     font-size: 14px;
     margin-bottom: 10px;
   }
  
   h1.title {
     text-align: center;
-    font-size: 38px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #00d9ff, #ff006e, #00d9ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 34px;
+    font-weight: 700;
+    color: #f0f6fc;
     margin-bottom: 14px;
     line-height: 1.2;
   }
  
   .subtitle {
     text-align: center;
-    color: #b0b8e8;
+    color: #8b949e;
     font-size: 15px;
-    max-width: 700px;
+    max-width: 620px;
     margin: 0 auto 48px;
     line-height: 1.6;
   }
  
-  hr { border: none; border-top: 2px solid #1a2558; background: linear-gradient(90deg, transparent, #00d9ff, #ff006e, transparent); margin: 44px 0; }
+  hr { border: none; border-top: 1px solid #21262d; margin: 44px 0; }
  
   h2 {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
-    color: #00ffd5;
+    color: #f0f6fc;
     margin: 44px 0 14px;
-    padding-bottom: 12px;
-    border-bottom: 3px solid #00d9ff;
-    text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+    padding-bottom: 8px;
+    border-bottom: 1px solid #21262d;
   }
  
   h3 {
-    font-size: 19px;
+    font-size: 17px;
     font-weight: 600;
-    color: #00d9ff;
+    color: #e6edf3;
     margin: 28px 0 10px;
   }
  
   h4 {
     font-size: 13px;
-    font-weight: 700;
-    color: #ff006e;
+    font-weight: 600;
+    color: #8b949e;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.07em;
     margin: 22px 0 8px;
   }
  
-  p { margin-bottom: 14px; color: #d0d8f0; font-size: 15px; }
+  p { margin-bottom: 14px; color: #c9d1d9; font-size: 15px; }
  
   ul { margin: 0 0 16px 20px; }
-  ul li { color: #d0d8f0; font-size: 15px; margin-bottom: 4px; }
+  ul li { color: #c9d1d9; font-size: 15px; margin-bottom: 4px; }
  
   .table-wrap { overflow-x: auto; margin-bottom: 24px; }
  
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
  
   th {
-    background: #1a2558;
-    color: #00d9ff;
-    font-weight: 700;
+    background: #161b22;
+    color: #8b949e;
+    font-weight: 600;
     text-align: left;
-    padding: 12px 14px;
-    border: 2px solid #00d9ff;
+    padding: 9px 14px;
+    border: 1px solid #30363d;
     font-size: 13px;
   }
  
   td {
-    padding: 12px 14px;
-    border: 1px solid #2a3a6a;
-    color: #d0d8f0;
-    background: #0f1535;
+    padding: 9px 14px;
+    border: 1px solid #21262d;
+    color: #c9d1d9;
+    background: #0d1117;
     vertical-align: top;
     font-size: 14px;
   }
  
-  tr:hover td { background: #1a2558; }
+  tr:hover td { background: #161b22; }
  
   code {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12.5px;
-    background: #1a2558;
-    color: #00ffd5;
-    padding: 2px 8px;
-    border-radius: 6px;
-    border: 1px solid #00d9ff;
-    box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
+    background: #161b22;
+    color: #79c0ff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #30363d;
   }
  
   pre {
-    background: #1a2558;
-    border: 2px solid #00d9ff;
-    border-radius: 10px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
     padding: 18px 20px;
     overflow-x: auto;
     margin-bottom: 4px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 12.5px;
     line-height: 1.7;
-    box-shadow: 0 0 20px rgba(0, 217, 255, 0.15);
   }
  
-  pre code { background: none; border: none; padding: 0; color: #e0e8ff; box-shadow: none; }
+  pre code { background: none; border: none; padding: 0; color: #e6edf3; }
  
-  .kw   { color: #ff006e; font-weight: 700; }
-  .fn   { color: #00ffd5; font-weight: 600; }
-  .str  { color: #ffd700; }
-  .num  { color: #ff85b3; }
-  .cm   { color: #7a88b8; font-style: italic; }
-  .cls  { color: #00d9ff; font-weight: 700; }
-  .bool { color: #00ffd5; font-weight: 700; }
+  .kw   { color: #ff7b72; }
+  .fn   { color: #d2a8ff; }
+  .str  { color: #a5d6ff; }
+  .num  { color: #f2cc60; }
+  .cm   { color: #8b949e; font-style: italic; }
+  .cls  { color: #ffa657; }
+  .bool { color: #79c0ff; }
  
   .annotation {
-    background: #1a2558;
-    border-left: 4px solid #00d9ff;
-    border-radius: 0 8px 8px 0;
-    padding: 14px 18px;
+    background: #0d1f38;
+    border-left: 3px solid #388bfd;
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
     margin-bottom: 24px;
     font-size: 13.5px;
-    color: #b0b8e8;
+    color: #8b949e;
     line-height: 1.6;
-    box-shadow: inset 0 0 10px rgba(0, 217, 255, 0.1);
   }
-  .annotation strong { color: #00ffd5; }
+  .annotation strong { color: #c9d1d9; }
  
   .callout {
-    background: #1a2558;
-    border: 2px solid #ff006e;
-    border-radius: 10px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
     padding: 14px 18px;
     margin-bottom: 20px;
     font-size: 14px;
-    color: #d0d8f0;
+    color: #c9d1d9;
     line-height: 1.6;
   }
-  .callout strong { color: #00ffd5; }
+  .callout strong { color: #f0f6fc; }
  
-  .callout-blue  { border-color: #00d9ff; background: #0f1f3a; }
-  .callout-green { border-color: #00ffd5; background: #0f2a1f; }
-  .callout-orange{ border-color: #ff9500; background: #2a1f0f; }
+  .callout-blue  { border-color: #1f6feb; background: #0d1f38; }
+  .callout-green { border-color: #238636; background: #0d2b1a; }
+  .callout-orange{ border-color: #9e6a03; background: #2b1a0d; }
  
   .badge {
     display: inline-block;
     font-size: 11.5px;
-    font-weight: 700;
-    padding: 4px 12px;
+    font-weight: 600;
+    padding: 2px 9px;
     border-radius: 100px;
     margin-right: 5px;
     font-family: 'JetBrains Mono', monospace;
   }
-  .b-blue   { background: #0f1f3a; color: #00d9ff; border: 2px solid #00d9ff; }
-  .b-green  { background: #0f2a1f; color: #00ffd5; border: 2px solid #00ffd5; }
-  .b-orange { background: #2a1f0f; color: #ff9500; border: 2px solid #ff9500; }
-  .b-purple { background: #1a0f2a; color: #ff006e; border: 2px solid #ff006e; }
-  .b-red    { background: #2a0f0f; color: #ff5580; border: 2px solid #ff5580; }
+  .b-blue   { background: #0d1f38; color: #58a6ff; border: 1px solid #1f6feb; }
+  .b-green  { background: #0d2b1a; color: #3fb950; border: 1px solid #238636; }
+  .b-orange { background: #2b1a0d; color: #ffa657; border: 1px solid #9e6a03; }
+  .b-purple { background: #1a0d2b; color: #d2a8ff; border: 1px solid #6e40c9; }
+  .b-red    { background: #2b0d0d; color: #ff7b72; border: 1px solid #da3633; }
  
   .tree {
-    background: #1a2558;
-    border: 2px solid #00d9ff;
-    border-radius: 10px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
     padding: 18px 22px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     line-height: 2;
     margin-bottom: 24px;
-    box-shadow: 0 0 15px rgba(0, 217, 255, 0.1);
   }
-  .tree-l0 { color: #ff006e; font-weight: 700; }
-  .tree-l1 { color: #00d9ff; margin-left: 22px; display: block; }
-  .tree-l2 { color: #00ffd5; margin-left: 44px; display: block; }
-  .tree-note { color: #7a88b8; font-size: 12px; }
+  .tree-l0 { color: #ffa657; font-weight: 700; }
+  .tree-l1 { color: #79c0ff; margin-left: 22px; display: block; }
+  .tree-l2 { color: #3fb950; margin-left: 44px; display: block; }
+  .tree-note { color: #8b949e; font-size: 12px; }
  
   .checklist { list-style: none; margin: 0 0 20px; padding: 0; }
-  .checklist li { font-size: 14px; color: #d0d8f0; padding: 3px 0; }
-  .checklist li::before { content: '✓ '; color: #00ffd5; }
+  .checklist li { font-size: 14px; color: #c9d1d9; padding: 3px 0; }
+  .checklist li::before { content: '- '; }
  
   .toc {
-    background: #1a2558;
-    border: 2px solid #ff006e;
-    border-radius: 10px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
     padding: 18px 22px;
     margin-bottom: 40px;
     font-size: 14px;
   }
-  .toc h4 { margin: 0 0 12px; color: #ff006e; }
+  .toc h4 { margin: 0 0 12px; }
   .toc ol { margin-left: 18px; }
-  .toc li { margin-bottom: 4px; color: #d0d8f0; }
-  .toc a { color: #00d9ff; }
+  .toc li { margin-bottom: 4px; }
+  .toc a { color: #58a6ff; }
  
   .hero-actions {
     text-align: center;
@@ -235,31 +227,31 @@
 
   .play-button {
     display: inline-block;
-    background: linear-gradient(135deg, #00d9ff, #00ffd5);
-    color: #0a0e27;
-    border: 2px solid #00ffd5;
-    border-radius: 12px;
-    padding: 14px 26px;
+    background: #1f6feb;
+    color: #ffffff;
+    border: 1px solid #388bfd;
+    border-radius: 10px;
+    padding: 12px 22px;
     font-weight: 700;
     font-size: 15px;
     text-decoration: none;
-    box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
-    transition: all 0.2s;
+    box-shadow: 0 8px 24px rgba(31, 111, 235, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   }
 
   .play-button:hover {
-    background: linear-gradient(135deg, #00ffd5, #ff006e);
-    transform: translateY(-2px);
-    box-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
+    background: #388bfd;
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 28px rgba(56, 139, 253, 0.28);
   }
 
   .image-frame {
     margin: 18px 0 22px;
-    background: #1a2558;
-    border: 2px solid #00d9ff;
+    background: #161b22;
+    border: 1px solid #30363d;
     border-radius: 12px;
     padding: 14px;
-    box-shadow: 0 0 15px rgba(0, 217, 255, 0.15);
   }
 
   .image-frame img {
@@ -271,7 +263,7 @@
 
   .image-caption {
     margin-top: 10px;
-    color: #7a88b8;
+    color: #8b949e;
     font-size: 13.5px;
     line-height: 1.6;
   }
@@ -279,43 +271,42 @@
   .footer {
     margin-top: 64px;
     padding-top: 24px;
-    border-top: 2px solid #00d9ff;
+    border-top: 1px solid #21262d;
     text-align: center;
     font-size: 13px;
-    color: #7a88b8;
+    color: #8b949e;
     line-height: 1.9;
   }
 
   /* Code Runner Styles */
   .code-runner-container {
-    background: #1a2558;
-    border: 2px solid #00d9ff;
-    border-radius: 12px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
     margin: 24px 0;
     overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 217, 255, 0.15);
   }
 
   .challenge-box {
-    background: #0f1535;
-    border-bottom: 2px solid #00d9ff;
+    background: #0d1f38;
+    border-bottom: 1px solid #30363d;
     padding: 14px 18px;
   }
 
   .challenge-box h3 {
-    color: #00ffd5;
+    color: #f0f6fc;
     margin-bottom: 6px;
     font-size: 16px;
   }
 
   .challenge-box p {
-    color: #d0d8f0;
+    color: #c9d1d9;
     font-size: 14px;
     margin: 0;
   }
 
   .editor-container, .output-container {
-    background: #1a2558;
+    background: #161b22;
   }
 
   .control-panel {
@@ -323,31 +314,28 @@
     align-items: center;
     gap: 8px;
     padding: 10px 14px;
-    background: #0f1535;
-    border-bottom: 1px solid #2a3a6a;
+    background: #0d1117;
+    border-bottom: 1px solid #30363d;
   }
 
   .control-panel button {
-    background: linear-gradient(135deg, #00d9ff, #00ffd5);
-    color: #0a0e27;
-    border: none;
+    background: #1f6feb;
+    color: #fff;
+    border: 1px solid #388bfd;
     border-radius: 6px;
-    padding: 6px 12px;
+    padding: 5px 10px;
     font-size: 13px;
     cursor: pointer;
-    font-weight: 700;
-    transition: all 0.2s;
   }
 
   .control-panel button:hover {
-    background: linear-gradient(135deg, #00ffd5, #ff006e);
-    box-shadow: 0 0 10px rgba(0, 217, 255, 0.4);
+    background: #388bfd;
   }
 
   .control-panel select {
-    background: #1a2558;
-    color: #d0d8f0;
-    border: 1px solid #00d9ff;
+    background: #161b22;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
     border-radius: 6px;
     padding: 6px 10px;
     font-size: 13px;
@@ -357,22 +345,22 @@
     width: 100%;
     min-height: 220px;
     border: none;
-    background: #1a2558;
-    color: #e0e8ff;
+    background: #161b22;
+    color: #e6edf3;
     font-family: 'JetBrains Mono', monospace;
     font-size: 14px;
     padding: 12px;
   }
 
   .output-content {
-    background: #1a2558;
-    border: 1px solid #2a3a6a;
+    background: #161b22;
+    border: 1px solid #30363d;
     border-radius: 6px;
     margin: 12px;
     padding: 12px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
-    color: #e0e8ff;
+    color: #e6edf3;
     min-height: 76px;
     max-height: 280px;
     overflow-y: auto;
@@ -381,9 +369,123 @@
   }
 
   .lineCount, .charCount, .execTime {
-    color: #7a88b8;
+    color: #8b949e;
     font-size: 12px;
   }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  th {
+    background: #21262d;
+    color: #f0f6fc;
+    border: none;
+    border-bottom: 1px solid #30363d;
+    padding: 12px 14px;
+  }
+
+  td {
+    background: #161b22;
+    border: none;
+    border-top: 1px solid #30363d;
+    padding: 12px 14px;
+  }
+
+  tr:hover td {
+    background: #21262d;
+  }
+
+  code {
+    background: #21262d;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  pre,
+  .editor-container,
+  .output-container,
+  .editor-textarea,
+  .output-content,
+  .challenge-box,
+  .control-panel {
+    background: #161b22;
+    border: 1px solid #30363d;
+    color: #e6edf3;
+    box-shadow: none;
+  }
+
+  pre,
+  .editor-textarea,
+  .output-content {
+    border-radius: 12px;
+  }
+
+  .control-panel button,
+  .play-button {
+    background: #238636;
+    color: #ffffff;
+    border: 1px solid #238636;
+    border-radius: 8px;
+  }
+
+  .control-panel button:hover,
+  .play-button:hover {
+    background: #2ea043;
+    box-shadow: none;
+  }
+
+  .control-panel select {
+    background: #21262d;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+  }
+
+  .badge {
+    background: #21262d;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+    border-radius: 20px;
+  }
+
+  .b-blue,
+  .b-green,
+  .b-orange,
+  .b-purple,
+  .b-red {
+    background: #21262d;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+  }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #30363d;
+    color: #8b949e;
+  }
+
+  .lineCount, .charCount, .execTime {
+    color: #8b949e;
+  }
+
+  /* Keep page barebones: focus on homework links, runners, and image */
+  pre,
+  .annotation {
+    display: none;
+  }
+
+  .kw   { color: #ff7b72; font-weight: 700; }
+  .fn   { color: #3fb950; font-weight: 600; }
+  .str  { color: #e3b341; }
+  .num  { color: #ffa657; }
+  .cm   { color: #8b949e; font-style: italic; }
+  .cls  { color: #f0f6fc; font-weight: 700; }
+  .bool { color: #3fb950; font-weight: 700; }
 </style>
 </head>
 <body>
@@ -393,30 +495,26 @@
   <div class="meta">Mar 23, 2026 • Ishan Jha • Sprint 6 CS111 Core Concepts</div>
   <h1 class="title">Nested Conditionals, Operators & Data Types</h1>
   <p class="subtitle">
-    Master the three core pillars of programming logic: how data types shape your code, operators execute computations, and nested conditionals make complex decisions possible. These three concepts power every algorithm you'll ever write.
+    Barebones reference: homework links + runnable snippets for each concept.
   </p>
-
-  <div class="callout callout-blue">
-    <strong>Focus:</strong> This blog exclusively covers nested conditionals, operators, and data types through real game code examples. No distractions, no fluff—just the essential logic.
-  </div>
 
   <hr>
  
   <!-- TABLE OF CONTENTS -->
   <div class="toc">
-    <h4>📋 Table of Contents</h4>
+    <h4>Table of Contents</h4>
     <ol>
-      <li><a href="#datatypes">Data Types — The Foundation</a></li>
-      <li><a href="#operators">Operators — The Computations</a></li>
-      <li><a href="#nested">Nested Conditionals — Complex Decision Making</a></li>
-      <li><a href="#practical">Practical Examples from Game Code</a></li>
+      <li><a href="#datatypes">Data Types</a></li>
+      <li><a href="#operators">Operators</a></li>
+      <li><a href="#nested">Nested Conditionals</a></li>
+      <li><a href="#practical">Image Implementation</a></li>
     </ol>
   </div>
  
   <hr>
  
   <!-- SECTION 1: DATA TYPES -->
-  <h2 id="datatypes">🗂️ Data Types — The Foundation</h2>
+  <h2 id="datatypes">Data Types — The Foundation</h2>
   <p>
     Every value in code is one of five fundamental data types. The type isn't just a label—it determines what operations are valid and how logic behaves. Mixing types incorrectly breaks comparisons and calculations.
   </p>
@@ -466,14 +564,40 @@
     Every conditional check, every loop, every calculation silently depends on type. When you write `if (count > 5)`, the `>` operator expects two numbers. If `count` is a string, JavaScript might coerce it (converting `"10" > 5` to `true`), but that's not reliable. Understand your data's type first.
   </div>
 
-  <h4>📚 Homework: Data Types & Variables</h4>
-  <p><strong><a href="jupiterian.github.io/CSSE1-portfolio//csse/javascript/fundamentals/variables-hw" target="_blank">Variables & Data Types Homework</a></strong> — Practice declaring and using different data types, understanding type coercion, and working with type-specific operations.</p>
-  <p><strong><a href="jupiterian.github.io/CSSE1-portfolio/javascript/array/homework" target="_blank">Arrays Homework</a></strong> — Master array creation, indexing, iteration, and common array methods like push, pop, and slice.</p>
+  <h4>Homework: Data Types & Variables</h4>
+  <p><strong><a href="https://jupiterian.github.io/CSSE1-portfolio/csse/javascript/fundamentals/variables-hw" target="_blank">Variables & Data Types Homework</a></strong></p>
+  <p><strong><a href="https://jupiterian.github.io/CSSE1-portfolio/javascript/array/homework" target="_blank">Arrays Homework</a></strong></p>
+
+  <div class="code-runner-container" id="runner-datatypes" data-storage-key="cs111-blog-runner-datatypes">
+    <div class="challenge-box">
+      <h3>Data Types Snippet</h3>
+      <p>Run and modify basic type checks.</p>
+    </div>
+    <div class="editor-container">
+      <div class="control-panel">
+        <button class="runBtn">Run</button>
+        <button class="copyBtn">Copy</button>
+        <button class="saveBtn">Save</button>
+        <button class="clearStorageBtn">Reset</button>
+        <select class="languageSelect"><option value="javascript" selected>JavaScript</option></select>
+        <select class="fontSizeSelect"><option value="14" selected>14px</option><option value="16">16px</option><option value="18">18px</option></select>
+      </div>
+      <textarea class="editor-textarea">const health = 10;
+const isDefeated = false;
+const lasers = ["L1", "L2"];
+
+console.log(typeof health);      // number
+console.log(typeof isDefeated);  // boolean
+console.log(Array.isArray(lasers)); // true</textarea>
+      <div class="control-panel"><span class="lineCount">Lines: 0</span><span class="charCount">Characters: 0</span></div>
+    </div>
+    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">Copy</button><span class="execTime"></span></div><div class="output-content">Click "Run".</div></div>
+  </div>
 
   <hr>
  
   <!-- SECTION 2: OPERATORS -->
-  <h2 id="operators">🔢 Operators — The Computations</h2>
+  <h2 id="operators">Operators — The Computations</h2>
   <p>
     Operators are what make code actually do something. Every frame, operators run the arithmetic, comparisons, and logic that produce the game's behavior. Master these and you master computation.
   </p>
@@ -528,12 +652,39 @@
   </div>
 
   <h4>Homework: Math Expressions & Operators</h4>
-  <p><strong><a href="jupiterian.github.io/CSSE1-portfolio/penguins/js-lessons/homework/math-expressions" target="_blank">Math Expressions & Operators Homework</a></strong> — Master arithmetic operators, comparison operators, logical operators, and operator precedence through hands-on problems.</p>
+  <p><strong><a href="https://jupiterian.github.io/CSSE1-portfolio/penguins/js-lessons/homework/math-expressions" target="_blank">Math Expressions & Operators Homework</a></strong></p>
+
+  <div class="code-runner-container" id="runner-operators" data-storage-key="cs111-blog-runner-operators">
+    <div class="challenge-box">
+      <h3>Operators Snippet</h3>
+      <p>Run arithmetic, comparison, and logical operators.</p>
+    </div>
+    <div class="editor-container">
+      <div class="control-panel">
+        <button class="runBtn">Run</button>
+        <button class="copyBtn">Copy</button>
+        <button class="saveBtn">Save</button>
+        <button class="clearStorageBtn">Reset</button>
+        <select class="languageSelect"><option value="javascript" selected>JavaScript</option></select>
+        <select class="fontSizeSelect"><option value="14" selected>14px</option><option value="16">16px</option><option value="18">18px</option></select>
+      </div>
+      <textarea class="editor-textarea">const hp = 12;
+const damage = 5;
+const cooldownReady = true;
+
+const nextHp = hp - damage;
+console.log("nextHp:", nextHp);
+console.log("defeated:", nextHp <= 0);
+console.log("canAttack:", cooldownReady && nextHp > 0);</textarea>
+      <div class="control-panel"><span class="lineCount">Lines: 0</span><span class="charCount">Characters: 0</span></div>
+    </div>
+    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">Copy</button><span class="execTime"></span></div><div class="output-content">Click "Run".</div></div>
+  </div>
 
   <hr>
  
   <!-- SECTION 3: NESTED CONDITIONALS -->
-  <h2 id="nested">🔁 Nested Conditionals — Complex Decision Making</h2>
+  <h2 id="nested">Nested Conditionals — Complex Decision Making</h2>
   <p>
     A single <code>if</code> statement makes a binary choice. Nested conditionals layer multiple checks, letting you handle complex scenarios: "If the player pressed the button AND enough time has passed AND the boss is still alive, then fire a laser."
   </p>
@@ -598,48 +749,48 @@
       <li><strong>Check 3:</strong> After damage applied — if health drops to zero, trigger defeat state.</li>
     </ul>
     Each nesting layer narrows scope, making the logic impossible to misunderstand. A laser can never damage a dead boss because of Check 1. A laser can never hit twice in rapid succession because of Check 2. And defeat is confirmed only after damage, not before.
-  </annotation>
+  </div>
 
-  <h4>📚 Homework: Conditionals & Booleans</h4>
-  <p><strong><a href="jupiterian.github.io/CSSE1-portfolio/csse/javascript/constellators/conditionals-hw" target="_blank">Conditionals Homework</a></strong> — Write nested if-else statements, practice guard clauses, and master boolean logic for complex decision-making.</p>
-  <p><strong><a href="jupiterian.github.io/CSSE1-portfolio/boolean-hack" target="_blank">Booleans Homework</a></strong> — Understand boolean values, truth tables, logical operators (&&, ||, !), and how to use booleans to control program flow.</p>
+  <h4>Homework: Conditionals & Booleans</h4>
+  <p><strong><a href="https://jupiterian.github.io/CSSE1-portfolio/csse/javascript/constellators/conditionals-hw" target="_blank">Conditionals Homework</a></strong></p>
+  <p><strong><a href="https://jupiterian.github.io/CSSE1-portfolio/boolean-hack" target="_blank">Booleans Homework</a></strong></p>
 
-  <h3>Attack Cooldown Example: Nested Conditions + Operators</h3>
-  <pre><code><span class="fn">updateAttack</span>(now) {
-  <span class="cm">///csse/javascript/constellators/conditionals-hw Outer: Did player press attack this frame?</span>
-  <span class="kw">if</span> (<span class="kw">this</span>.attackRequested) {
-    <span class="kw">this</span>.attackRequested = <span class="bool">false</span>;  <span class="cm">// Consume the input</span>
-    
-    <span class="cm">// Inner Layer 1: Has enough time passed since last attack?</span>
-    <span class="kw">if</span> (now - <span class="kw">this</span>.lastAttackTime >= <span class="kw">this</span>.attackCooldown) {
-      
-      <span class="cm">// Inner Layer 2: Is the boss still alive?</span>
-      <span class="kw">if</span> (!<span class="kw">this</span>.boss.isDefeated) {
-        <span class="kw">this</span>.lastAttackTime = now;
-        <span class="kw">this</span>.<span class="fn">spawnLaser</span>();
-        console.<span class="fn">log</span>(<span class="str">'Laser fired!'</span>);
-      }
+  <div class="code-runner-container" id="runner-nested-mini" data-storage-key="cs111-blog-runner-nested-mini">
+    <div class="challenge-box">
+      <h3>Nested Conditional Snippet</h3>
+      <p>Run a 3-layer guard check.</p>
+    </div>
+    <div class="editor-container">
+      <div class="control-panel">
+        <button class="runBtn">Run</button>
+        <button class="copyBtn">Copy</button>
+        <button class="saveBtn">Save</button>
+        <button class="clearStorageBtn">Reset</button>
+        <select class="languageSelect"><option value="javascript" selected>JavaScript</option></select>
+        <select class="fontSizeSelect"><option value="14" selected>14px</option><option value="16">16px</option><option value="18">18px</option></select>
+      </div>
+      <textarea class="editor-textarea">const state = {
+  attackRequested: true,
+  cooldownReady: true,
+  bossAlive: true
+};
+
+if (state.attackRequested) {
+  if (state.cooldownReady) {
+    if (state.bossAlive) {
+      console.log("Laser fired");
     }
   }
-}
-
-<span class="cm">// Call this every frame</span>
-game.<span class="fn">updateAttack</span>(Date.<span class="fn">now</span>());</code></pre>
-
-  <div class="annotation">
-    <strong>Operator breakdown:</strong>
-    <ul>
-      <li><code>now - this.lastAttackTime >= this.attackCooldown</code>: Subtract numbers, then compare with <code>>=</code> operator. True only if enough time has passed.</li>
-      <li><code>!this.boss.isDefeated</code>: The <code>!</code> (NOT) operator inverts the boolean. Only fire if boss is NOT defeated.</li>
-      <li><code>this.attackRequested = false</code>: Assignment operator consumes the input so it doesn't fire again this frame.</li>
-    </ul>
-    The nested structure ensures the attack fires only if all three conditions align: input requested → cooldown expired → boss alive.
-  </annotation>
+}</textarea>
+      <div class="control-panel"><span class="lineCount">Lines: 0</span><span class="charCount">Characters: 0</span></div>
+    </div>
+    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">Copy</button><span class="execTime"></span></div><div class="output-content">Click "Run".</div></div>
+  </div>
 
   <hr>
  
   <!-- CODE RUNNER CHALLENGE -->
-  <h2 id="practical">🎮 Practical Example: Game Logic Playground</h2>
+  <h2 id="practical">Image Implementation</h2>
 
   <div class="code-runner-container" id="runner-nested" data-storage-key="cs111-blog-nested-cond">
     <div class="challenge-box">
@@ -648,14 +799,14 @@ game.<span class="fn">updateAttack</span>(Date.<span class="fn">now</span>());</
     </div>
     <div class="editor-container">
       <div class="control-panel">
-        <button class="runBtn">▶ Run</button>
-        <button class="copyBtn">⎘ Copy</button>
-        <button class="saveBtn">💾 Save</button>
-        <button class="clearStorageBtn">🗑 Reset</button>
+        <button class="runBtn">Run</button>
+        <button class="copyBtn">Copy</button>
+        <button class="saveBtn">Save</button>
+        <button class="clearStorageBtn">Reset</button>
         <select class="languageSelect"><option value="javascript" selected>JavaScript</option></select>
         <select class="fontSizeSelect"><option value="14" selected>14px</option><option value="16">16px</option><option value="18">18px</option></select>
       </div>
-      <textarea class="editor-textarea" style="display: none;">class BossGame {
+      <textarea class="editor-textarea">class BossGame {
   constructor() {
     this.boss = {
       health: 10,
@@ -672,13 +823,13 @@ game.<span class="fn">updateAttack</span>(Date.<span class="fn">now</span>());</
     
     // Nested Condition 1: Already defeated?
     if (this.boss.isDefeated) {
-      console.log('❌ Boss already defeated.');
+      console.log('Boss already defeated.');
       return false;
     }
     
     // Nested Condition 2: Still invulnerable?
     if (!this.boss.isVulnerable) {
-      console.log('🛡️ Invulnerable! Hit blocked.');
+      console.log('Invulnerable! Hit blocked.');
       return false;
     }
     
@@ -686,12 +837,12 @@ game.<span class="fn">updateAttack</span>(Date.<span class="fn">now</span>());</
     this.boss.health = Math.max(0, this.boss.health - amount);
     this.boss.isVulnerable = false;
     this.boss.lastDamagedAt = now;
-    console.log(`⚔️ Hit! Boss HP: ${this.boss.health}/${this.boss.maxHealth}`);
+    console.log(`Hit! Boss HP: ${this.boss.health}/${this.boss.maxHealth}`);
     
     // Nested Condition 3: Did this kill the boss?
     if (this.boss.health === 0) {
       this.boss.isDefeated = true;
-      console.log('💀 BOSS DEFEATED!');
+      console.log('BOSS DEFEATED!');
       return true;
     }
     
@@ -699,7 +850,7 @@ game.<span class="fn">updateAttack</span>(Date.<span class="fn">now</span>());</
     setTimeout(() => {
       if (!this.boss.isDefeated) {
         this.boss.isVulnerable = true;
-        console.log('🔓 Vulnerability recovered.');
+        console.log('Vulnerability recovered.');
       }
     }, this.invulnerabilityMs);
     
@@ -716,13 +867,13 @@ setTimeout(() => {
 }, 400);</textarea>
       <div class="control-panel"><span class="lineCount">Lines: 0</span><span class="charCount">Characters: 0</span></div>
     </div>
-    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">⎘</button><span class="execTime"></span></div><div class="output-content">Click "Run" to see nested conditionals in action...</div></div>
+    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">Copy</button><span class="execTime"></span></div><div class="output-content">Click "Run" to see nested conditionals in action...</div></div>
   </div>
 
   <hr>
  
   <!-- HOMEWORK LINKS -->
-  <h2>📚 Related Learning</h2>
+  <h2>Related Learning</h2>
   <p>
     These three concepts—data types, operators, and nested conditionals—are the foundation of every homework assignment and every game you'll build. Master them here, and you'll recognize them everywhere in code.
   </p>
@@ -732,12 +883,13 @@ setTimeout(() => {
   </div>
 
   <div class="footer">
-    Nested Conditionals, Operators & Data Types<br>
-    CS111 Core Concepts • Ishan Jha • Mar 23, 2026
+    CS111 Core Concepts • Ishan Jha
   </div>
+
+  <script type="text/plain" id="legacy-hidden">
  
   <!-- SECTION 1: OVERVIEW -->
-  <h2 id="overview">🎮 Game Overview</h2>
+  <h2 id="overview">Game Overview</h2>
   <p>
     Peppa Pig Fight Club is a 3-level boss-fight game where the player 
 (Ishan Jha) battles through the Peppa Pig cast using WASD movement and 
@@ -763,7 +915,7 @@ by the code explained in this blog.
   <hr>
  
   <!-- SECTION 2: OOP -->
-  <h2 id="oop">📐 OOP — Classes, Inheritance &amp; Constructor Chaining</h2>
+  <h2 id="oop">OOP — Classes, Inheritance &amp; Constructor Chaining</h2>
  
   <h3>Class Hierarchy (2+ levels deep)</h3>
   <p>
@@ -842,14 +994,14 @@ classes.</p>
     </div>
     <div class="editor-container">
       <div class="control-panel">
-        <button class="runBtn">▶</button>
-        <button class="copyBtn">⎘</button>
-        <button class="saveBtn">💾</button>
-        <button class="clearStorageBtn">🗑</button>
+        <button class="runBtn">Run</button>
+        <button class="copyBtn">Copy</button>
+        <button class="saveBtn">Save</button>
+        <button class="clearStorageBtn">Reset</button>
         <select class="languageSelect"><option value="javascript" selected="selected">JavaScript</option><option value="python">Python</option><option value="java">Java</option></select>
         <select class="fontSizeSelect"><option value="14" selected="selected">14px</option><option value="16">16px</option><option value="18">18px</option><option value="20">20px</option></select>
       </div>
-      <textarea class="editor-textarea" style="display: none;">class SimpleBoss {
+      <textarea class="editor-textarea">class SimpleBoss {
   constructor(name, hp = 8) {
     this.name = name;
     this.hp = hp;
@@ -868,17 +1020,17 @@ classes.</p>
 
 const b = new SimpleBoss('TestBoss', 10);
 console.log(b.takeDamage(4));
-console.log(b.takeDamage(7));</textarea><div class="CodeMirror cm-s-darcula" translate="no"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4px; left: 34px;"><textarea style="position: absolute; bottom: -1em; padding: 0px; width: 1px; height: 1em; min-height: 1em; outline: none;" wrap="off" autocorrect="off" autocapitalize="none" spellcheck="false" tabindex="0"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="display: block; bottom: 0px; width: 18px; visibility: hidden;"><div style="min-width: 1px; height: 552px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true" style="height: 18px; visibility: hidden;"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1" draggable="true"><div class="CodeMirror-sizer" style="margin-left: 30px; margin-bottom: 0px; border-right-width: 50px; min-height: 552px; min-width: 491px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div style="position: relative; outline: none;" role="presentation"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 27.2px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">class</span> <span class="cm-def">SimpleBoss</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  <span class="cm-property">constructor</span>(<span class="cm-def">name</span>, <span class="cm-def">hp</span> <span class="cm-operator">=</span> <span class="cm-number">8</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">this</span>.<span class="cm-property">name</span> <span class="cm-operator">=</span> <span class="cm-variable-2">name</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">this</span>.<span class="cm-property">hp</span> <span class="cm-operator">=</span> <span class="cm-variable-2">hp</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">this</span>.<span class="cm-property">isDefeated</span> <span class="cm-operator">=</span> <span class="cm-atom">false</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  <span class="cm-property">takeDamage</span>(<span class="cm-def">dmg</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">this</span>.<span class="cm-property">hp</span> <span class="cm-operator">-=</span> <span class="cm-variable-2">dmg</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">if</span> (<span class="cm-keyword">this</span>.<span class="cm-property">hp</span> <span class="cm-operator">&lt;=</span> <span class="cm-number">0</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">      <span class="cm-keyword">this</span>.<span class="cm-property">isDefeated</span> <span class="cm-operator">=</span> <span class="cm-atom">true</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">      <span class="cm-keyword">return</span> <span class="cm-string-2">`${</span><span class="cm-keyword">this</span>.<span class="cm-property">name</span><span class="cm-string-2">}</span> <span class="cm-string-2">is defeated!`</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">return</span> <span class="cm-string-2">`${</span><span class="cm-keyword">this</span>.<span class="cm-property">name</span><span class="cm-string-2">}</span> <span class="cm-string-2">has ${</span><span class="cm-keyword">this</span>.<span class="cm-property">hp</span><span class="cm-string-2">}</span> <span class="cm-string-2">HP remaining.`</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">15</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">16</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">}</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">17</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">18</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">const</span> <span class="cm-def">b</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">SimpleBoss</span>(<span class="cm-string">'TestBoss'</span>, <span class="cm-number">10</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">19</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">b</span>.<span class="cm-property">takeDamage</span>(<span class="cm-number">4</span>));</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">20</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">b</span>.<span class="cm-property">takeDamage</span>(<span class="cm-number">7</span>));</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 50px; width: 1px; border-bottom: 0px solid transparent; top: 552px;"></div><div class="CodeMirror-gutters" style="height: 602px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div>
+console.log(b.takeDamage(7));</textarea>
       <div class="control-panel"><span class="lineCount">Lines: 20</span><span class="charCount">Characters: 429</span></div>
     </div>
     <div class="output-container">
-      <div class="control-panel"><span>Output</span><button class="copyOutputBtn">⎘</button><span class="execTime"></span></div>
+      <div class="control-panel"><span>Output</span><button class="copyOutputBtn">Copy</button><span class="execTime"></span></div>
       <div class="output-content">Click "Run" in code control panel to see output ...</div>
     </div>
   </div>
 
   <!-- SECTION 2: DATA TYPES -->
-  <h2 id="datatypes">🗂️ Data Types</h2>
+  <h2 id="datatypes">Data Types</h2>
   <p>
     Every piece of game state is stored as one of five data types. The 
 type isn't just a label — it determines what operations are valid and 
@@ -995,7 +1147,7 @@ arbitrary distances.
   <hr>
  
   <!-- SECTION 6: CONTROL STRUCTURES -->
-  <h2 id="control">🔁 Control Structures</h2>
+  <h2 id="control">Control Structures</h2>
  
   <h3>Iteration — for loop over laser array</h3>
   <pre><code><span class="cm">// Iterate backwards through the lasers array — safe to splice while looping</span>
@@ -1077,14 +1229,14 @@ already-visited indices shift, so nothing is skipped.
     </div>
     <div class="editor-container">
       <div class="control-panel">
-        <button class="runBtn">▶</button>
-        <button class="copyBtn">⎘</button>
-        <button class="saveBtn">💾</button>
-        <button class="clearStorageBtn">🗑</button>
+        <button class="runBtn">Run</button>
+        <button class="copyBtn">Copy</button>
+        <button class="saveBtn">Save</button>
+        <button class="clearStorageBtn">Reset</button>
         <select class="languageSelect"><option value="javascript" selected="selected">JavaScript</option><option value="python">Python</option><option value="java">Java</option></select>
         <select class="fontSizeSelect"><option value="14" selected="selected">14px</option><option value="16">16px</option><option value="18">18px</option><option value="20">20px</option></select>
       </div>
-      <textarea class="editor-textarea" style="display: none;">const boss = {
+      <textarea class="editor-textarea">const boss = {
   health: 12,
   isDefeated: false,
   lastDamagedAt: 0,
@@ -1127,7 +1279,7 @@ simulateLaserHit(100);
 simulateLaserHit(400);
 simulateLaserHit(450);</textarea>
  
-  <h4>📚 Related Homework: Nested Conditionals</h4>
+  <h4>Related Homework: Nested Conditionals</h4>
   <p><strong><a href="https://aadis12.github.io/student/NestedConditionalsHomework/">Nested Conditionals Homework</a></strong>
  - Relates to "Control Structures — Iteration, Conditions, Nested 
 Conditions". This homework demonstrates my understanding of complex 
@@ -1135,7 +1287,7 @@ decision-making logic using nested if-else statements, which is crucial
 for game mechanics like boss behavior and win/lose conditions in the 
 Peppa Pig game.</p>
  
-  <h4>📚 Related Homework: Iterations</h4>
+  <h4>Related Homework: Iterations</h4>
   <p><strong><a href="https://aadis12.github.io/student/IterationsHomework/">Iterations Homework</a></strong>
  - Relates to "Control Structures — Iteration, Conditions, Nested 
 Conditions". Shows proficiency in loops and iteration, essential for 
@@ -1145,7 +1297,7 @@ like lasers and enemies.</p>
   <hr>
  
   <!-- SECTION 7: I/O -->
-  <h2 id="io">⌨️ Input / Output</h2>
+  <h2 id="io">Input / Output</h2>
  
   <h3>Keyboard Input — Event Listeners</h3>
   <p>
@@ -1173,14 +1325,14 @@ document.<span class="fn">removeEventListener</span>(<span class="str">'keydown'
     </div>
     <div class="editor-container">
       <div class="control-panel">
-        <button class="runBtn">▶</button>
-        <button class="copyBtn">⎘</button>
-        <button class="saveBtn">💾</button>
-        <button class="clearStorageBtn">🗑</button>
+        <button class="runBtn">Run</button>
+        <button class="copyBtn">Copy</button>
+        <button class="saveBtn">Save</button>
+        <button class="clearStorageBtn">Reset</button>
         <select class="languageSelect"><option value="javascript" selected="selected">JavaScript</option><option value="python">Python</option><option value="java">Java</option></select>
         <select class="fontSizeSelect"><option value="14" selected="selected">14px</option><option value="16">16px</option><option value="18">18px</option><option value="20">20px</option></select>
       </div>
-      <textarea class="editor-textarea" style="display: none;">let attackRequested = true;
+      <textarea class="editor-textarea">let attackRequested = true;
 let lastAttackAt = 0;
 let attackCooldown = 500;
 let bossAlive = true;
@@ -1203,16 +1355,16 @@ tryAttack(0);
 tryAttack(100);
 tryAttack(600);
 bossAlive = false;
-tryAttack(1200);</textarea><div class="CodeMirror cm-s-darcula" translate="no"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4px; left: 34px;"><textarea style="position: absolute; bottom: -1em; padding: 0px; width: 1px; height: 1em; min-height: 1em; outline: none;" wrap="off" autocorrect="off" autocapitalize="none" spellcheck="false" tabindex="0"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="display: block; bottom: 0px; width: 18px; visibility: hidden;"><div style="min-width: 1px; height: 661px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true" style="height: 18px; visibility: hidden;"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1" draggable="true"><div class="CodeMirror-sizer" style="margin-left: 30px; margin-bottom: 0px; border-right-width: 50px; min-height: 661px; min-width: 535px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div style="position: relative; outline: none;" role="presentation"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 27.2px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">let</span> <span class="cm-def">attackRequested</span> <span class="cm-operator">=</span> <span class="cm-atom">true</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">let</span> <span class="cm-def">lastAttackAt</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">let</span> <span class="cm-def">attackCooldown</span> <span class="cm-operator">=</span> <span class="cm-number">500</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">let</span> <span class="cm-def">bossAlive</span> <span class="cm-operator">=</span> <span class="cm-atom">true</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-keyword">function</span> <span class="cm-def">tryAttack</span>(<span class="cm-def">now</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  <span class="cm-keyword">if</span> (<span class="cm-variable">attackRequested</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-variable">attackRequested</span> <span class="cm-operator">=</span> <span class="cm-atom">false</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-keyword">if</span> (<span class="cm-variable-2">now</span> <span class="cm-operator">-</span> <span class="cm-variable">lastAttackAt</span> <span class="cm-operator">&gt;=</span> <span class="cm-variable">attackCooldown</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-variable">bossAlive</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">      <span class="cm-variable">lastAttackAt</span> <span class="cm-operator">=</span> <span class="cm-variable-2">now</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">      <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'Attack executed at'</span>, <span class="cm-variable-2">now</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    } <span class="cm-keyword">else</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">      <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'Attack blocked: cooldown or boss dead'</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">15</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  } <span class="cm-keyword">else</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">16</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">    <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'No attack request'</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">17</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">18</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation">}</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">19</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;" aria-hidden="true"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">20</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"><span class="cm-variable">tryAttack</span>(<span class="cm-number">0</span>);</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 50px; width: 1px; border-bottom: 0px solid transparent; top: 661px;"></div><div class="CodeMirror-gutters" style="height: 711px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div>
+tryAttack(1200);</textarea>
       <div class="control-panel"><span class="lineCount">Lines: 24</span><span class="charCount">Characters: 528</span></div>
     </div>
-    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">⎘</button><span class="execTime"></span></div><div class="output-content">Click "Run" in code control panel to see output ...</div></div>
+    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">Copy</button><span class="execTime"></span></div><div class="output-content">Click "Run" in code control panel to see output ...</div></div>
   </div>
 
   <hr>
 
   <!-- SECTION 6: PRACTICAL EXAMPLES -->
-  <h2 id="practical">🎮 Practical Examples: From Game Code</h2>
+  <h2 id="practical">Practical Examples: From Game Code</h2>
   <p>
     All three core concepts — nested conditionals, operators, and data types — appear together in real game code. Here's how they work as a unified system:
   </p>
@@ -1268,6 +1420,7 @@ tryAttack(1200);</textarea><div class="CodeMirror cm-s-darcula" translate="no"><
     CSSE Final Project — Sprint 6 • Ishan Jha • Mar 23, 2026
   </div>
  
+</script>
 </div>
 <script>
 (function() {
@@ -1352,7 +1505,7 @@ tryAttack(1200);</textarea><div class="CodeMirror cm-s-darcula" translate="no"><
     function runCode() {
       const code = editor.getValue();
       const lang = languageSelect?.value || 'javascript';
-      outputContent.textContent = '⏳ Running...';
+      outputContent.textContent = 'Running...';
       execTime.textContent = '';
       const start = Date.now();
 
@@ -1372,10 +1525,10 @@ tryAttack(1200);</textarea><div class="CodeMirror cm-s-darcula" translate="no"><
           outputContent.textContent = 'Error: ' + (err.message || err);
         } finally {
           console.log = origLog;
-          execTime.textContent = `⏱ Execution time: ${Date.now() - start}ms`;
+          execTime.textContent = `Execution time: ${Date.now() - start}ms`;
         }
       } else {
-        outputContent.textContent = `⚠️ ${lang} execution is only available when integrated with the backend API. (Use site environment)`;
+        outputContent.textContent = `${lang} execution is only available when integrated with the backend API. (Use site environment)`;
       }
     }
 
