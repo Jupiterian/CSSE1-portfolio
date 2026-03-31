@@ -1,224 +1,233 @@
 <!DOCTYPE html>
 <html lang="en"><head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CS111 Blog - Ishan Jha</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/darcula.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+<link href="CS111%20Blog%20-%20Ishan%20Jha_files/css2.css" rel="stylesheet">
+<link rel="stylesheet" href="CS111%20Blog%20-%20Ishan%20Jha_files/codemirror.min.css">
+<link rel="stylesheet" href="CS111%20Blog%20-%20Ishan%20Jha_files/darcula.min.css">
+<script src="CS111%20Blog%20-%20Ishan%20Jha_files/codemirror.min.js"></script>
+<script src="CS111%20Blog%20-%20Ishan%20Jha_files/python.min.js"></script>
+<script src="CS111%20Blog%20-%20Ishan%20Jha_files/clike.min.js"></script>
+<script src="CS111%20Blog%20-%20Ishan%20Jha_files/javascript.min.js"></script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
  
   body {
-    background: #0d1117;
-    color: #e6edf3;
+    background: #0a0e27;
+    color: #e0e8ff;
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.7;
   }
  
-  a { color: #58a6ff; text-decoration: none; }
-  a:hover { text-decoration: underline; }
+  a { color: #00d9ff; text-decoration: none; transition: color 0.2s; }
+  a:hover { color: #00ffd5; text-decoration: none; text-shadow: 0 0 10px #00d9ff; }
  
   .page {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 60px 24px 100px;
   }
  
   .meta {
     text-align: center;
-    color: #8b949e;
+    color: #a0a8d8;
     font-size: 14px;
     margin-bottom: 10px;
   }
  
   h1.title {
     text-align: center;
-    font-size: 34px;
-    font-weight: 700;
-    color: #f0f6fc;
+    font-size: 38px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00d9ff, #ff006e, #00d9ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 14px;
     line-height: 1.2;
   }
  
   .subtitle {
     text-align: center;
-    color: #8b949e;
+    color: #b0b8e8;
     font-size: 15px;
-    max-width: 620px;
+    max-width: 700px;
     margin: 0 auto 48px;
     line-height: 1.6;
   }
  
-  hr { border: none; border-top: 1px solid #21262d; margin: 44px 0; }
+  hr { border: none; border-top: 2px solid #1a2558; background: linear-gradient(90deg, transparent, #00d9ff, #ff006e, transparent); margin: 44px 0; }
  
   h2 {
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 700;
-    color: #f0f6fc;
+    color: #00ffd5;
     margin: 44px 0 14px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #21262d;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #00d9ff;
+    text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
   }
  
   h3 {
-    font-size: 17px;
+    font-size: 19px;
     font-weight: 600;
-    color: #e6edf3;
+    color: #00d9ff;
     margin: 28px 0 10px;
   }
  
   h4 {
     font-size: 13px;
-    font-weight: 600;
-    color: #8b949e;
+    font-weight: 700;
+    color: #ff006e;
     text-transform: uppercase;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.12em;
     margin: 22px 0 8px;
   }
  
-  p { margin-bottom: 14px; color: #c9d1d9; font-size: 15px; }
+  p { margin-bottom: 14px; color: #d0d8f0; font-size: 15px; }
  
   ul { margin: 0 0 16px 20px; }
-  ul li { color: #c9d1d9; font-size: 15px; margin-bottom: 4px; }
+  ul li { color: #d0d8f0; font-size: 15px; margin-bottom: 4px; }
  
   .table-wrap { overflow-x: auto; margin-bottom: 24px; }
  
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
  
   th {
-    background: #161b22;
-    color: #8b949e;
-    font-weight: 600;
+    background: #1a2558;
+    color: #00d9ff;
+    font-weight: 700;
     text-align: left;
-    padding: 9px 14px;
-    border: 1px solid #30363d;
+    padding: 12px 14px;
+    border: 2px solid #00d9ff;
     font-size: 13px;
   }
  
   td {
-    padding: 9px 14px;
-    border: 1px solid #21262d;
-    color: #c9d1d9;
-    background: #0d1117;
+    padding: 12px 14px;
+    border: 1px solid #2a3a6a;
+    color: #d0d8f0;
+    background: #0f1535;
     vertical-align: top;
     font-size: 14px;
   }
  
-  tr:hover td { background: #161b22; }
+  tr:hover td { background: #1a2558; }
  
   code {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12.5px;
-    background: #161b22;
-    color: #79c0ff;
-    padding: 2px 6px;
-    border-radius: 4px;
-    border: 1px solid #30363d;
+    background: #1a2558;
+    color: #00ffd5;
+    padding: 2px 8px;
+    border-radius: 6px;
+    border: 1px solid #00d9ff;
+    box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
   }
  
   pre {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 8px;
+    background: #1a2558;
+    border: 2px solid #00d9ff;
+    border-radius: 10px;
     padding: 18px 20px;
     overflow-x: auto;
     margin-bottom: 4px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 12.5px;
     line-height: 1.7;
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.15);
   }
  
-  pre code { background: none; border: none; padding: 0; color: #e6edf3; }
+  pre code { background: none; border: none; padding: 0; color: #e0e8ff; box-shadow: none; }
  
-  .kw   { color: #ff7b72; }
-  .fn   { color: #d2a8ff; }
-  .str  { color: #a5d6ff; }
-  .num  { color: #f2cc60; }
-  .cm   { color: #8b949e; font-style: italic; }
-  .cls  { color: #ffa657; }
-  .bool { color: #79c0ff; }
+  .kw   { color: #ff006e; font-weight: 700; }
+  .fn   { color: #00ffd5; font-weight: 600; }
+  .str  { color: #ffd700; }
+  .num  { color: #ff85b3; }
+  .cm   { color: #7a88b8; font-style: italic; }
+  .cls  { color: #00d9ff; font-weight: 700; }
+  .bool { color: #00ffd5; font-weight: 700; }
  
   .annotation {
-    background: #0d1f38;
-    border-left: 3px solid #388bfd;
-    border-radius: 0 6px 6px 0;
-    padding: 12px 16px;
+    background: #1a2558;
+    border-left: 4px solid #00d9ff;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
     margin-bottom: 24px;
     font-size: 13.5px;
-    color: #8b949e;
+    color: #b0b8e8;
     line-height: 1.6;
+    box-shadow: inset 0 0 10px rgba(0, 217, 255, 0.1);
   }
-  .annotation strong { color: #c9d1d9; }
+  .annotation strong { color: #00ffd5; }
  
   .callout {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 8px;
+    background: #1a2558;
+    border: 2px solid #ff006e;
+    border-radius: 10px;
     padding: 14px 18px;
     margin-bottom: 20px;
     font-size: 14px;
-    color: #c9d1d9;
+    color: #d0d8f0;
     line-height: 1.6;
   }
-  .callout strong { color: #f0f6fc; }
+  .callout strong { color: #00ffd5; }
  
-  .callout-blue  { border-color: #1f6feb; background: #0d1f38; }
-  .callout-green { border-color: #238636; background: #0d2b1a; }
-  .callout-orange{ border-color: #9e6a03; background: #2b1a0d; }
+  .callout-blue  { border-color: #00d9ff; background: #0f1f3a; }
+  .callout-green { border-color: #00ffd5; background: #0f2a1f; }
+  .callout-orange{ border-color: #ff9500; background: #2a1f0f; }
  
   .badge {
     display: inline-block;
     font-size: 11.5px;
-    font-weight: 600;
-    padding: 2px 9px;
+    font-weight: 700;
+    padding: 4px 12px;
     border-radius: 100px;
     margin-right: 5px;
     font-family: 'JetBrains Mono', monospace;
   }
-  .b-blue   { background: #0d1f38; color: #58a6ff; border: 1px solid #1f6feb; }
-  .b-green  { background: #0d2b1a; color: #3fb950; border: 1px solid #238636; }
-  .b-orange { background: #2b1a0d; color: #ffa657; border: 1px solid #9e6a03; }
-  .b-purple { background: #1a0d2b; color: #d2a8ff; border: 1px solid #6e40c9; }
-  .b-red    { background: #2b0d0d; color: #ff7b72; border: 1px solid #da3633; }
+  .b-blue   { background: #0f1f3a; color: #00d9ff; border: 2px solid #00d9ff; }
+  .b-green  { background: #0f2a1f; color: #00ffd5; border: 2px solid #00ffd5; }
+  .b-orange { background: #2a1f0f; color: #ff9500; border: 2px solid #ff9500; }
+  .b-purple { background: #1a0f2a; color: #ff006e; border: 2px solid #ff006e; }
+  .b-red    { background: #2a0f0f; color: #ff5580; border: 2px solid #ff5580; }
  
   .tree {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 8px;
+    background: #1a2558;
+    border: 2px solid #00d9ff;
+    border-radius: 10px;
     padding: 18px 22px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     line-height: 2;
     margin-bottom: 24px;
+    box-shadow: 0 0 15px rgba(0, 217, 255, 0.1);
   }
-  .tree-l0 { color: #ffa657; font-weight: 700; }
-  .tree-l1 { color: #79c0ff; margin-left: 22px; display: block; }
-  .tree-l2 { color: #3fb950; margin-left: 44px; display: block; }
-  .tree-note { color: #8b949e; font-size: 12px; }
+  .tree-l0 { color: #ff006e; font-weight: 700; }
+  .tree-l1 { color: #00d9ff; margin-left: 22px; display: block; }
+  .tree-l2 { color: #00ffd5; margin-left: 44px; display: block; }
+  .tree-note { color: #7a88b8; font-size: 12px; }
  
   .checklist { list-style: none; margin: 0 0 20px; padding: 0; }
-  .checklist li { font-size: 14px; color: #c9d1d9; padding: 3px 0; }
-  .checklist li::before { content: '- '; }
+  .checklist li { font-size: 14px; color: #d0d8f0; padding: 3px 0; }
+  .checklist li::before { content: '✓ '; color: #00ffd5; }
  
   .toc {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 8px;
+    background: #1a2558;
+    border: 2px solid #ff006e;
+    border-radius: 10px;
     padding: 18px 22px;
     margin-bottom: 40px;
     font-size: 14px;
   }
-  .toc h4 { margin: 0 0 12px; }
+  .toc h4 { margin: 0 0 12px; color: #ff006e; }
   .toc ol { margin-left: 18px; }
-  .toc li { margin-bottom: 4px; }
-  .toc a { color: #58a6ff; }
+  .toc li { margin-bottom: 4px; color: #d0d8f0; }
+  .toc a { color: #00d9ff; }
  
   .hero-actions {
     text-align: center;
@@ -227,31 +236,31 @@
 
   .play-button {
     display: inline-block;
-    background: #1f6feb;
-    color: #ffffff;
-    border: 1px solid #388bfd;
-    border-radius: 10px;
-    padding: 12px 22px;
+    background: linear-gradient(135deg, #00d9ff, #00ffd5);
+    color: #0a0e27;
+    border: 2px solid #00ffd5;
+    border-radius: 12px;
+    padding: 14px 26px;
     font-weight: 700;
     font-size: 15px;
     text-decoration: none;
-    box-shadow: 0 8px 24px rgba(31, 111, 235, 0.25);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+    transition: all 0.2s;
   }
 
   .play-button:hover {
-    background: #388bfd;
-    text-decoration: none;
-    transform: translateY(-1px);
-    box-shadow: 0 10px 28px rgba(56, 139, 253, 0.28);
+    background: linear-gradient(135deg, #00ffd5, #ff006e);
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
   }
 
   .image-frame {
     margin: 18px 0 22px;
-    background: #161b22;
-    border: 1px solid #30363d;
+    background: #1a2558;
+    border: 2px solid #00d9ff;
     border-radius: 12px;
     padding: 14px;
+    box-shadow: 0 0 15px rgba(0, 217, 255, 0.15);
   }
 
   .image-frame img {
@@ -263,7 +272,7 @@
 
   .image-caption {
     margin-top: 10px;
-    color: #8b949e;
+    color: #7a88b8;
     font-size: 13.5px;
     line-height: 1.6;
   }
@@ -271,42 +280,43 @@
   .footer {
     margin-top: 64px;
     padding-top: 24px;
-    border-top: 1px solid #21262d;
+    border-top: 2px solid #00d9ff;
     text-align: center;
     font-size: 13px;
-    color: #8b949e;
+    color: #7a88b8;
     line-height: 1.9;
   }
 
   /* Code Runner Styles */
   .code-runner-container {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 8px;
+    background: #1a2558;
+    border: 2px solid #00d9ff;
+    border-radius: 12px;
     margin: 24px 0;
     overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.15);
   }
 
   .challenge-box {
-    background: #0d1f38;
-    border-bottom: 1px solid #30363d;
+    background: #0f1535;
+    border-bottom: 2px solid #00d9ff;
     padding: 14px 18px;
   }
 
   .challenge-box h3 {
-    color: #f0f6fc;
+    color: #00ffd5;
     margin-bottom: 6px;
     font-size: 16px;
   }
 
   .challenge-box p {
-    color: #c9d1d9;
+    color: #d0d8f0;
     font-size: 14px;
     margin: 0;
   }
 
   .editor-container, .output-container {
-    background: #161b22;
+    background: #1a2558;
   }
 
   .control-panel {
@@ -314,28 +324,31 @@
     align-items: center;
     gap: 8px;
     padding: 10px 14px;
-    background: #0d1117;
-    border-bottom: 1px solid #30363d;
+    background: #0f1535;
+    border-bottom: 1px solid #2a3a6a;
   }
 
   .control-panel button {
-    background: #1f6feb;
-    color: #fff;
-    border: 1px solid #388bfd;
+    background: linear-gradient(135deg, #00d9ff, #00ffd5);
+    color: #0a0e27;
+    border: none;
     border-radius: 6px;
-    padding: 5px 10px;
+    padding: 6px 12px;
     font-size: 13px;
     cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
   }
 
   .control-panel button:hover {
-    background: #388bfd;
+    background: linear-gradient(135deg, #00ffd5, #ff006e);
+    box-shadow: 0 0 10px rgba(0, 217, 255, 0.4);
   }
 
   .control-panel select {
-    background: #161b22;
-    color: #c9d1d9;
-    border: 1px solid #30363d;
+    background: #1a2558;
+    color: #d0d8f0;
+    border: 1px solid #00d9ff;
     border-radius: 6px;
     padding: 6px 10px;
     font-size: 13px;
@@ -345,22 +358,22 @@
     width: 100%;
     min-height: 220px;
     border: none;
-    background: #161b22;
-    color: #e6edf3;
+    background: #1a2558;
+    color: #e0e8ff;
     font-family: 'JetBrains Mono', monospace;
     font-size: 14px;
     padding: 12px;
   }
 
   .output-content {
-    background: #161b22;
-    border: 1px solid #30363d;
+    background: #1a2558;
+    border: 1px solid #2a3a6a;
     border-radius: 6px;
     margin: 12px;
     padding: 12px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
-    color: #e6edf3;
+    color: #e0e8ff;
     min-height: 76px;
     max-height: 280px;
     overflow-y: auto;
@@ -369,9 +382,146 @@
   }
 
   .lineCount, .charCount, .execTime {
-    color: #8b949e;
+    color: #7a88b8;
     font-size: 12px;
   }
+
+  /* Theme override to match grade-predictor.html formatting */
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #161b22;
+    border-radius: 0.5rem;
+    padding: 3rem 2.5rem;
+    border: 1px solid #30363d;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+  }
+
+  .meta {
+    color: #8b949e;
+    margin-bottom: 1rem;
+  }
+
+  h1.title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+    background: linear-gradient(135deg, #f0f6fc, #8b949e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #f0f6fc;
+    border-bottom: none;
+    text-shadow: none;
+    padding-bottom: 0;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #f0f6fc;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #8b949e;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #8b949e;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+  }
+
+  p,
+  ul li,
+  td {
+    color: #e6edf3;
+  }
+
+  a {
+    color: #2ea043;
+  }
+
+  a:hover {
+    color: #3fb950;
+    text-shadow: none;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #30363d;
+    background: transparent;
+    margin: 3rem 0;
+  }
+
+  .toc,
+  .annotation,
+  .callout,
+  .tree,
+  .code-runner-container,
+  .image-frame {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 0.5rem;
+    box-shadow: none;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .toc h4,
+  .toc a,
+  .annotation strong,
+  .callout strong,
+  .challenge-box h3 {
+    color: #f0f6fc;
+  }
+
+  .toc ol {
+    margin-left: 1.25rem;
+  }
+
+  .callout-blue,
+  .callout-green,
+  .callout-orange {
+    background: #161b22;
+    border: 1px solid #30363d;
+  }
+
+  .table-wrap {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 0.5rem;
+    padding: 0;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -502,7 +652,7 @@
  
   <!-- TABLE OF CONTENTS -->
   <div class="toc">
-    <h4>Table of Contents</h4>
+    <h4>📋 Table of Contents</h4>
     <ol>
       <li><a href="#datatypes">Data Types</a></li>
       <li><a href="#operators">Operators</a></li>
@@ -514,7 +664,7 @@
   <hr>
  
   <!-- SECTION 1: DATA TYPES -->
-  <h2 id="datatypes">Data Types — The Foundation</h2>
+  <h2 id="datatypes">🗂️ Data Types — The Foundation</h2>
   <p>
     Every value in code is one of five fundamental data types. The type isn't just a label—it determines what operations are valid and how logic behaves. Mixing types incorrectly breaks comparisons and calculations.
   </p>
@@ -564,7 +714,7 @@
     Every conditional check, every loop, every calculation silently depends on type. When you write `if (count > 5)`, the `>` operator expects two numbers. If `count` is a string, JavaScript might coerce it (converting `"10" > 5` to `true`), but that's not reliable. Understand your data's type first.
   </div>
 
-  <h4>Homework: Data Types & Variables</h4>
+  <h4>📚 Homework: Data Types & Variables</h4>
   <p><strong><a href="https://jupiterian.github.io/CSSE1-portfolio/csse/javascript/fundamentals/variables-hw" target="_blank">Variables & Data Types Homework</a></strong></p>
   <p><strong><a href="https://jupiterian.github.io/CSSE1-portfolio/javascript/array/homework" target="_blank">Arrays Homework</a></strong></p>
 
@@ -575,10 +725,10 @@
     </div>
     <div class="editor-container">
       <div class="control-panel">
-        <button class="runBtn">Run</button>
-        <button class="copyBtn">Copy</button>
-        <button class="saveBtn">Save</button>
-        <button class="clearStorageBtn">Reset</button>
+        <button class="runBtn">▶ Run</button>
+        <button class="copyBtn">⎘ Copy</button>
+        <button class="saveBtn">💾 Save</button>
+        <button class="clearStorageBtn">🗑 Reset</button>
         <select class="languageSelect"><option value="javascript" selected>JavaScript</option></select>
         <select class="fontSizeSelect"><option value="14" selected>14px</option><option value="16">16px</option><option value="18">18px</option></select>
       </div>
@@ -591,13 +741,13 @@ console.log(typeof isDefeated);  // boolean
 console.log(Array.isArray(lasers)); // true</textarea>
       <div class="control-panel"><span class="lineCount">Lines: 0</span><span class="charCount">Characters: 0</span></div>
     </div>
-    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">Copy</button><span class="execTime"></span></div><div class="output-content">Click "Run".</div></div>
+    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">⎘</button><span class="execTime"></span></div><div class="output-content">Click "Run".</div></div>
   </div>
 
   <hr>
  
   <!-- SECTION 2: OPERATORS -->
-  <h2 id="operators">Operators — The Computations</h2>
+  <h2 id="operators">🔢 Operators — The Computations</h2>
   <p>
     Operators are what make code actually do something. Every frame, operators run the arithmetic, comparisons, and logic that produce the game's behavior. Master these and you master computation.
   </p>
@@ -661,10 +811,10 @@ console.log(Array.isArray(lasers)); // true</textarea>
     </div>
     <div class="editor-container">
       <div class="control-panel">
-        <button class="runBtn">Run</button>
-        <button class="copyBtn">Copy</button>
-        <button class="saveBtn">Save</button>
-        <button class="clearStorageBtn">Reset</button>
+        <button class="runBtn">▶ Run</button>
+        <button class="copyBtn">⎘ Copy</button>
+        <button class="saveBtn">💾 Save</button>
+        <button class="clearStorageBtn">🗑 Reset</button>
         <select class="languageSelect"><option value="javascript" selected>JavaScript</option></select>
         <select class="fontSizeSelect"><option value="14" selected>14px</option><option value="16">16px</option><option value="18">18px</option></select>
       </div>
@@ -678,13 +828,13 @@ console.log("defeated:", nextHp <= 0);
 console.log("canAttack:", cooldownReady && nextHp > 0);</textarea>
       <div class="control-panel"><span class="lineCount">Lines: 0</span><span class="charCount">Characters: 0</span></div>
     </div>
-    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">Copy</button><span class="execTime"></span></div><div class="output-content">Click "Run".</div></div>
+    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">⎘</button><span class="execTime"></span></div><div class="output-content">Click "Run".</div></div>
   </div>
 
   <hr>
  
   <!-- SECTION 3: NESTED CONDITIONALS -->
-  <h2 id="nested">Nested Conditionals — Complex Decision Making</h2>
+  <h2 id="nested">🔁 Nested Conditionals — Complex Decision Making</h2>
   <p>
     A single <code>if</code> statement makes a binary choice. Nested conditionals layer multiple checks, letting you handle complex scenarios: "If the player pressed the button AND enough time has passed AND the boss is still alive, then fire a laser."
   </p>
@@ -751,7 +901,7 @@ console.log("canAttack:", cooldownReady && nextHp > 0);</textarea>
     Each nesting layer narrows scope, making the logic impossible to misunderstand. A laser can never damage a dead boss because of Check 1. A laser can never hit twice in rapid succession because of Check 2. And defeat is confirmed only after damage, not before.
   </div>
 
-  <h4>Homework: Conditionals & Booleans</h4>
+  <h4>📚 Homework: Conditionals & Booleans</h4>
   <p><strong><a href="https://jupiterian.github.io/CSSE1-portfolio/csse/javascript/constellators/conditionals-hw" target="_blank">Conditionals Homework</a></strong></p>
   <p><strong><a href="https://jupiterian.github.io/CSSE1-portfolio/boolean-hack" target="_blank">Booleans Homework</a></strong></p>
 
@@ -762,10 +912,10 @@ console.log("canAttack:", cooldownReady && nextHp > 0);</textarea>
     </div>
     <div class="editor-container">
       <div class="control-panel">
-        <button class="runBtn">Run</button>
-        <button class="copyBtn">Copy</button>
-        <button class="saveBtn">Save</button>
-        <button class="clearStorageBtn">Reset</button>
+        <button class="runBtn">▶ Run</button>
+        <button class="copyBtn">⎘ Copy</button>
+        <button class="saveBtn">💾 Save</button>
+        <button class="clearStorageBtn">🗑 Reset</button>
         <select class="languageSelect"><option value="javascript" selected>JavaScript</option></select>
         <select class="fontSizeSelect"><option value="14" selected>14px</option><option value="16">16px</option><option value="18">18px</option></select>
       </div>
@@ -784,13 +934,13 @@ if (state.attackRequested) {
 }</textarea>
       <div class="control-panel"><span class="lineCount">Lines: 0</span><span class="charCount">Characters: 0</span></div>
     </div>
-    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">Copy</button><span class="execTime"></span></div><div class="output-content">Click "Run".</div></div>
+    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">⎘</button><span class="execTime"></span></div><div class="output-content">Click "Run".</div></div>
   </div>
 
   <hr>
  
   <!-- CODE RUNNER CHALLENGE -->
-  <h2 id="practical">Image Implementation</h2>
+  <h2 id="practical">🖼️ Image Implementation</h2>
 
   <div class="code-runner-container" id="runner-nested" data-storage-key="cs111-blog-nested-cond">
     <div class="challenge-box">
@@ -799,10 +949,10 @@ if (state.attackRequested) {
     </div>
     <div class="editor-container">
       <div class="control-panel">
-        <button class="runBtn">Run</button>
-        <button class="copyBtn">Copy</button>
-        <button class="saveBtn">Save</button>
-        <button class="clearStorageBtn">Reset</button>
+        <button class="runBtn">▶ Run</button>
+        <button class="copyBtn">⎘ Copy</button>
+        <button class="saveBtn">💾 Save</button>
+        <button class="clearStorageBtn">🗑 Reset</button>
         <select class="languageSelect"><option value="javascript" selected>JavaScript</option></select>
         <select class="fontSizeSelect"><option value="14" selected>14px</option><option value="16">16px</option><option value="18">18px</option></select>
       </div>
@@ -823,13 +973,13 @@ if (state.attackRequested) {
     
     // Nested Condition 1: Already defeated?
     if (this.boss.isDefeated) {
-      console.log('Boss already defeated.');
+      console.log('❌ Boss already defeated.');
       return false;
     }
     
     // Nested Condition 2: Still invulnerable?
     if (!this.boss.isVulnerable) {
-      console.log('Invulnerable! Hit blocked.');
+      console.log('🛡️ Invulnerable! Hit blocked.');
       return false;
     }
     
@@ -837,12 +987,12 @@ if (state.attackRequested) {
     this.boss.health = Math.max(0, this.boss.health - amount);
     this.boss.isVulnerable = false;
     this.boss.lastDamagedAt = now;
-    console.log(`Hit! Boss HP: ${this.boss.health}/${this.boss.maxHealth}`);
+    console.log(`⚔️ Hit! Boss HP: ${this.boss.health}/${this.boss.maxHealth}`);
     
     // Nested Condition 3: Did this kill the boss?
     if (this.boss.health === 0) {
       this.boss.isDefeated = true;
-      console.log('BOSS DEFEATED!');
+      console.log('💀 BOSS DEFEATED!');
       return true;
     }
     
@@ -850,7 +1000,7 @@ if (state.attackRequested) {
     setTimeout(() => {
       if (!this.boss.isDefeated) {
         this.boss.isVulnerable = true;
-        console.log('Vulnerability recovered.');
+        console.log('🔓 Vulnerability recovered.');
       }
     }, this.invulnerabilityMs);
     
@@ -867,13 +1017,13 @@ setTimeout(() => {
 }, 400);</textarea>
       <div class="control-panel"><span class="lineCount">Lines: 0</span><span class="charCount">Characters: 0</span></div>
     </div>
-    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">Copy</button><span class="execTime"></span></div><div class="output-content">Click "Run" to see nested conditionals in action...</div></div>
+    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">⎘</button><span class="execTime"></span></div><div class="output-content">Click "Run" to see nested conditionals in action...</div></div>
   </div>
 
   <hr>
  
   <!-- HOMEWORK LINKS -->
-  <h2>Related Learning</h2>
+  <h2>📚 Related Learning</h2>
   <p>
     These three concepts—data types, operators, and nested conditionals—are the foundation of every homework assignment and every game you'll build. Master them here, and you'll recognize them everywhere in code.
   </p>
@@ -889,7 +1039,7 @@ setTimeout(() => {
   <script type="text/plain" id="legacy-hidden">
  
   <!-- SECTION 1: OVERVIEW -->
-  <h2 id="overview">Game Overview</h2>
+  <h2 id="overview">🎮 Game Overview</h2>
   <p>
     Peppa Pig Fight Club is a 3-level boss-fight game where the player 
 (Ishan Jha) battles through the Peppa Pig cast using WASD movement and 
@@ -915,7 +1065,7 @@ by the code explained in this blog.
   <hr>
  
   <!-- SECTION 2: OOP -->
-  <h2 id="oop">OOP — Classes, Inheritance &amp; Constructor Chaining</h2>
+  <h2 id="oop">📐 OOP — Classes, Inheritance &amp; Constructor Chaining</h2>
  
   <h3>Class Hierarchy (2+ levels deep)</h3>
   <p>
@@ -994,10 +1144,10 @@ classes.</p>
     </div>
     <div class="editor-container">
       <div class="control-panel">
-        <button class="runBtn">Run</button>
-        <button class="copyBtn">Copy</button>
-        <button class="saveBtn">Save</button>
-        <button class="clearStorageBtn">Reset</button>
+        <button class="runBtn">▶</button>
+        <button class="copyBtn">⎘</button>
+        <button class="saveBtn">💾</button>
+        <button class="clearStorageBtn">🗑</button>
         <select class="languageSelect"><option value="javascript" selected="selected">JavaScript</option><option value="python">Python</option><option value="java">Java</option></select>
         <select class="fontSizeSelect"><option value="14" selected="selected">14px</option><option value="16">16px</option><option value="18">18px</option><option value="20">20px</option></select>
       </div>
@@ -1024,13 +1174,13 @@ console.log(b.takeDamage(7));</textarea>
       <div class="control-panel"><span class="lineCount">Lines: 20</span><span class="charCount">Characters: 429</span></div>
     </div>
     <div class="output-container">
-      <div class="control-panel"><span>Output</span><button class="copyOutputBtn">Copy</button><span class="execTime"></span></div>
+      <div class="control-panel"><span>Output</span><button class="copyOutputBtn">⎘</button><span class="execTime"></span></div>
       <div class="output-content">Click "Run" in code control panel to see output ...</div>
     </div>
   </div>
 
   <!-- SECTION 2: DATA TYPES -->
-  <h2 id="datatypes">Data Types</h2>
+  <h2 id="datatypes">🗂️ Data Types</h2>
   <p>
     Every piece of game state is stored as one of five data types. The 
 type isn't just a label — it determines what operations are valid and 
@@ -1147,7 +1297,7 @@ arbitrary distances.
   <hr>
  
   <!-- SECTION 6: CONTROL STRUCTURES -->
-  <h2 id="control">Control Structures</h2>
+  <h2 id="control">🔁 Control Structures</h2>
  
   <h3>Iteration — for loop over laser array</h3>
   <pre><code><span class="cm">// Iterate backwards through the lasers array — safe to splice while looping</span>
@@ -1229,10 +1379,10 @@ already-visited indices shift, so nothing is skipped.
     </div>
     <div class="editor-container">
       <div class="control-panel">
-        <button class="runBtn">Run</button>
-        <button class="copyBtn">Copy</button>
-        <button class="saveBtn">Save</button>
-        <button class="clearStorageBtn">Reset</button>
+        <button class="runBtn">▶</button>
+        <button class="copyBtn">⎘</button>
+        <button class="saveBtn">💾</button>
+        <button class="clearStorageBtn">🗑</button>
         <select class="languageSelect"><option value="javascript" selected="selected">JavaScript</option><option value="python">Python</option><option value="java">Java</option></select>
         <select class="fontSizeSelect"><option value="14" selected="selected">14px</option><option value="16">16px</option><option value="18">18px</option><option value="20">20px</option></select>
       </div>
@@ -1279,7 +1429,7 @@ simulateLaserHit(100);
 simulateLaserHit(400);
 simulateLaserHit(450);</textarea>
  
-  <h4>Related Homework: Nested Conditionals</h4>
+  <h4>📚 Related Homework: Nested Conditionals</h4>
   <p><strong><a href="https://aadis12.github.io/student/NestedConditionalsHomework/">Nested Conditionals Homework</a></strong>
  - Relates to "Control Structures — Iteration, Conditions, Nested 
 Conditions". This homework demonstrates my understanding of complex 
@@ -1287,7 +1437,7 @@ decision-making logic using nested if-else statements, which is crucial
 for game mechanics like boss behavior and win/lose conditions in the 
 Peppa Pig game.</p>
  
-  <h4>Related Homework: Iterations</h4>
+  <h4>📚 Related Homework: Iterations</h4>
   <p><strong><a href="https://aadis12.github.io/student/IterationsHomework/">Iterations Homework</a></strong>
  - Relates to "Control Structures — Iteration, Conditions, Nested 
 Conditions". Shows proficiency in loops and iteration, essential for 
@@ -1297,7 +1447,7 @@ like lasers and enemies.</p>
   <hr>
  
   <!-- SECTION 7: I/O -->
-  <h2 id="io">Input / Output</h2>
+  <h2 id="io">⌨️ Input / Output</h2>
  
   <h3>Keyboard Input — Event Listeners</h3>
   <p>
@@ -1325,10 +1475,10 @@ document.<span class="fn">removeEventListener</span>(<span class="str">'keydown'
     </div>
     <div class="editor-container">
       <div class="control-panel">
-        <button class="runBtn">Run</button>
-        <button class="copyBtn">Copy</button>
-        <button class="saveBtn">Save</button>
-        <button class="clearStorageBtn">Reset</button>
+        <button class="runBtn">▶</button>
+        <button class="copyBtn">⎘</button>
+        <button class="saveBtn">💾</button>
+        <button class="clearStorageBtn">🗑</button>
         <select class="languageSelect"><option value="javascript" selected="selected">JavaScript</option><option value="python">Python</option><option value="java">Java</option></select>
         <select class="fontSizeSelect"><option value="14" selected="selected">14px</option><option value="16">16px</option><option value="18">18px</option><option value="20">20px</option></select>
       </div>
@@ -1358,13 +1508,13 @@ bossAlive = false;
 tryAttack(1200);</textarea>
       <div class="control-panel"><span class="lineCount">Lines: 24</span><span class="charCount">Characters: 528</span></div>
     </div>
-    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">Copy</button><span class="execTime"></span></div><div class="output-content">Click "Run" in code control panel to see output ...</div></div>
+    <div class="output-container"><div class="control-panel"><span>Output</span><button class="copyOutputBtn">⎘</button><span class="execTime"></span></div><div class="output-content">Click "Run" in code control panel to see output ...</div></div>
   </div>
 
   <hr>
 
   <!-- SECTION 6: PRACTICAL EXAMPLES -->
-  <h2 id="practical">Practical Examples: From Game Code</h2>
+  <h2 id="practical">🎮 Practical Examples: From Game Code</h2>
   <p>
     All three core concepts — nested conditionals, operators, and data types — appear together in real game code. Here's how they work as a unified system:
   </p>
@@ -1505,7 +1655,7 @@ tryAttack(1200);</textarea>
     function runCode() {
       const code = editor.getValue();
       const lang = languageSelect?.value || 'javascript';
-      outputContent.textContent = 'Running...';
+      outputContent.textContent = '⏳ Running...';
       execTime.textContent = '';
       const start = Date.now();
 
@@ -1525,10 +1675,10 @@ tryAttack(1200);</textarea>
           outputContent.textContent = 'Error: ' + (err.message || err);
         } finally {
           console.log = origLog;
-          execTime.textContent = `Execution time: ${Date.now() - start}ms`;
+          execTime.textContent = `⏱ Execution time: ${Date.now() - start}ms`;
         }
       } else {
-        outputContent.textContent = `${lang} execution is only available when integrated with the backend API. (Use site environment)`;
+        outputContent.textContent = `⚠️ ${lang} execution is only available when integrated with the backend API. (Use site environment)`;
       }
     }
 
